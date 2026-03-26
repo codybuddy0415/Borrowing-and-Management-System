@@ -1,331 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Available Equipment — SCC Sports Office</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f0f2f5;--white:#fff;--text:#1e293b;--muted:#64748b;
-  --border:#e2e8f0;--teal:#0d9488;--accent:#6366f1;
-  --green:#10b981;--gold:#f59e0b;--red:#ef4444;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  <title>Available Equipment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f8fafc;
+      padding: 20px;
+    }
 
-/* TOPBAR */
-.topbar{
-  background:var(--white);border-bottom:1px solid var(--border);
-  padding:0 28px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:50;
-  box-shadow:0 1px 8px rgba(0,0,0,.06);
-}
-.topbar-left{display:flex;align-items:center;gap:12px;}
-.topbar-icon{
-  width:36px;height:36px;border-radius:50%;
-  background:linear-gradient(135deg,#2d6a6f,#6366f1);
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-}
-.topbar-title strong{font-size:15px;font-weight:700;display:block;}
-.topbar-title span{font-size:11px;color:var(--muted);}
-.topbar-right{display:flex;align-items:center;gap:10px;}
-.user-pill{
-  display:flex;align-items:center;gap:7px;
-  padding:6px 14px;background:#f1f5f9;
-  border:1px solid var(--border);border-radius:20px;font-size:13px;
-}
-.btn{padding:8px 18px;border-radius:8px;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;}
-.btn-ghost{background:var(--white);color:var(--text);border:1px solid var(--border);}
-.btn-ghost:hover{background:#f8fafc;}
-.btn-teal{background:linear-gradient(135deg,#0f766e,var(--teal));color:#fff;}
-.btn-teal:hover{opacity:.9;}
+    h1 {
+      color: #1e293b;
+    }
 
-/* HERO */
-.hero{
-  background:linear-gradient(135deg,#1a2e4a,#2d6a6f);
-  padding:44px 28px;text-align:center;color:#fff;
-}
-.hero h1{font-size:clamp(24px,4vw,36px);font-weight:700;margin-bottom:8px;}
-.hero h1 span{color:#6ee7b7;}
-.hero p{font-size:14px;opacity:.8;max-width:480px;margin:0 auto;}
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
 
-/* CONTROLS */
-.controls{
-  background:var(--white);border-bottom:1px solid var(--border);
-  padding:14px 28px;
-  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
-}
-.search-wrap{
-  display:flex;align-items:center;gap:8px;
-  background:#f8fafc;border:1.5px solid var(--border);
-  border-radius:9px;padding:9px 14px;flex:1;max-width:360px;
-}
-.search-wrap input{
-  background:none;border:none;outline:none;font-size:14px;
-  color:var(--text);font-family:'Inter',sans-serif;flex:1;
-}
-.search-wrap input::placeholder{color:var(--muted);}
-.filter-row{display:flex;gap:8px;flex-wrap:wrap;}
-.chip{
-  padding:7px 15px;border-radius:20px;font-size:13px;font-weight:500;
-  border:1.5px solid var(--border);background:#f8fafc;
-  cursor:pointer;transition:all .2s;color:var(--muted);
-}
-.chip:hover{border-color:#0d9488;color:var(--teal);}
-.chip.active{background:#ccfbf1;border-color:var(--teal);color:#0f766e;font-weight:600;}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
 
-/* GRID */
-.grid-wrap{padding:24px 28px 60px;max-width:1200px;margin:0 auto;}
-.eq-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;
-}
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
 
-/* CARD */
-.eq-card{
-  background:var(--white);border:1px solid var(--border);border-radius:14px;
-  padding:20px;display:flex;flex-direction:column;
-  transition:all .22s;
-  animation:cardIn .35s ease both;
-}
-.eq-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1);border-color:#0d9488;}
-@keyframes cardIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+    th {
+      text-align: left;
+      font-size: 12px;
+      color: #64748b;
+    }
 
-.eq-icon{
-  width:48px;height:48px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;font-size:22px;
-  margin-bottom:12px;
-}
-.ic-ball{background:#ede9fe;} .ic-net{background:#ccfbf1;} .ic-track{background:#fef3c7;}
-.ic-prot{background:#fee2e2;} .ic-water{background:#dbeafe;} .ic-other{background:#f1f5f9;}
+    .badge {
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
 
-.eq-name{font-size:16px;font-weight:700;margin-bottom:3px;}
-.eq-cat{font-size:12px;color:var(--muted);margin-bottom:14px;}
+    .good { background:#d1fae5; color:#065f46; }
+    .fair { background:#fef3c7; color:#92400e; }
+    .bad { background:#fee2e2; color:#991b1b; }
 
-.eq-counts{
-  display:flex;gap:10px;background:#f8fafc;border-radius:10px;
-  padding:10px 12px;margin-bottom:12px;
-}
-.eq-count{flex:1;text-align:center;}
-.eq-count-num{font-size:22px;font-weight:700;}
-.eq-count-num.green{color:var(--green);}
-.eq-count-num.muted{color:var(--muted);}
-.eq-count-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
-
-.eq-bar{height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden;margin-bottom:13px;}
-.eq-bar-inner{height:100%;border-radius:3px;transition:width .5s;}
-
-.eq-footer{display:flex;align-items:center;justify-content:space-between;}
-.cond{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;}
-.cond-good{background:#dcfce7;color:#15803d;}
-.cond-fair{background:#fef3c7;color:#b45309;}
-.cond-rep{background:#fee2e2;color:#b91c1c;}
-.avail{font-size:12px;font-weight:600;padding:4px 11px;border-radius:20px;}
-.avail-yes{background:#ccfbf1;color:#0f766e;}
-.avail-no{background:#fee2e2;color:#b91c1c;}
-
-/* EMPTY */
-.empty{text-align:center;padding:70px 20px;grid-column:1/-1;color:var(--muted);}
-.empty .ico{font-size:48px;margin-bottom:12px;}
-
-/* MODAL */
-.modal-overlay{
-  display:none;position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
-  align-items:center;justify-content:center;
-}
-.modal-overlay.open{display:flex;}
-.modal{
-  background:var(--white);border-radius:16px;padding:30px;
-  width:100%;max-width:520px;max-height:90vh;overflow-y:auto;
-  box-shadow:0 32px 80px rgba(0,0,0,.2);
-  animation:modalIn .25s ease;
-}
-@keyframes modalIn{from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);}}
-.modal h3{font-size:20px;font-weight:700;margin-bottom:4px;}
-.modal>p{font-size:13px;color:var(--muted);margin-bottom:20px;}
-.borrow-rec{
-  background:#f8fafc;border:1px solid var(--border);border-radius:10px;
-  padding:14px;margin-bottom:10px;
-}
-.borrow-rec-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
-.borrow-rec-name{font-size:14px;font-weight:600;}
-.borrow-rec-meta{font-size:12px;color:var(--muted);margin-top:3px;}
-.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
-.badge-green{background:#dcfce7;color:#15803d;}
-.badge-gold{background:#fef3c7;color:#b45309;}
-.badge-red{background:#fee2e2;color:#b91c1c;}
-
-/* RESPONSIVE */
-@media(max-width:640px){
-  .topbar{padding:0 14px;}
-  .controls{padding:12px 14px;}
-  .grid-wrap{padding:16px 14px 40px;}
-  .eq-grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:400px){
-  .eq-grid{grid-template-columns:1fr;}
-}
-</style>
+    button {
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: #6366f1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- TOPBAR -->
-<header class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-icon">🏫</div>
-    <div class="topbar-title">
-      <strong>SCC Sports Office</strong>
-      <span>Equipment Portal</span>
-    </div>
-  </div>
-  <div class="topbar-right">
-    <button class="btn btn-ghost" onclick="openMyBorrows()">📋 My Borrows</button>
-    <div class="user-pill">🎽 <span id="user-label">Borrower</span></div>
-    <button class="btn btn-ghost" onclick="logout()">← Exit</button>
-  </div>
-</header>
+<h1>Available Equipment</h1>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Sports Equipment<br><span>Available Now</span></h1>
-  <p>Browse our inventory and check what's ready for borrowing. Visit the Sports Office to reserve your items.</p>
-</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Available</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="table"></tbody>
+  </table>
 
-<!-- CONTROLS -->
-<div class="controls">
-  <div class="search-wrap">
-    <span>🔍</span>
-    <input type="text" id="search" placeholder="Search equipment…" oninput="render()">
-  </div>
-  <div class="filter-row">
-    <span class="chip active" onclick="setFilter('all',this)">All</span>
-    <span class="chip" onclick="setFilter('Ball Sports',this)">⚽ Ball Sports</span>
-    <span class="chip" onclick="setFilter('Net Sports',this)">🏸 Net Sports</span>
-    <span class="chip" onclick="setFilter('Track & Field',this)">🏃 Track & Field</span>
-    <span class="chip" onclick="setFilter('Protective Gear',this)">🦺 Gear</span>
-    <span class="chip" onclick="setFilter('Other',this)">📦 Other</span>
-  </div>
-</div>
-
-<!-- GRID -->
-<div class="grid-wrap">
-  <div class="eq-grid" id="eq-grid"></div>
-</div>
-
-<!-- MY BORROWS MODAL -->
-<div class="modal-overlay" id="modal-myborrows">
-  <div class="modal">
-    <h3>My Borrowing History</h3>
-    <p>Records linked to ID: <strong id="modal-uid" style="color:#0f766e"></strong></p>
-    <div id="my-borrows-list"></div>
-    <div style="text-align:right;margin-top:14px">
-      <button class="btn btn-ghost" onclick="closeModal('modal-myborrows')">Close</button>
-    </div>
-  </div>
+  <button onclick="logout()">Logout</button>
 </div>
 
 <script>
-const ICONS = {
-  'Ball Sports':['⚽','ic-ball'],
-  'Net Sports':['🏸','ic-net'],
-  'Track & Field':['🏃','ic-track'],
-  'Protective Gear':['🦺','ic-prot'],
-  'Water Sports':['🏊','ic-water'],
-  'Other':['📦','ic-other'],
-};
-let filter = 'all';
-const userId = localStorage.getItem('scc_user') || 'Unknown';
-document.getElementById('user-label').textContent = userId;
-
-function setFilter(f, el) {
-  filter = f;
-  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  render();
+if (localStorage.getItem("role") !== "borrower") {
+  window.location.href = "index.html";
 }
+
+let equipments = JSON.parse(localStorage.getItem("equipments")) || [];
 
 function render() {
-  const eq = JSON.parse(localStorage.getItem('scc_equipment') || '[]');
-  const q = document.getElementById('search').value.toLowerCase();
-  const list = eq.filter(e => {
-    const mq = !q || e.name.toLowerCase().includes(q) || e.cat.toLowerCase().includes(q);
-    const mf = filter === 'all' || e.cat === filter;
-    return mq && mf;
+  let table = document.getElementById("table");
+  table.innerHTML = "";
+
+  equipments.forEach(e => {
+    let statusClass =
+      e.avail === 0 ? "bad" :
+      e.avail <= 2 ? "fair" : "good";
+
+    let statusText =
+      e.avail === 0 ? "Out of Stock" :
+      e.avail <= 2 ? "Low Stock" : "Available";
+
+    table.innerHTML += `
+      <tr>
+        <td>${e.name}</td>
+        <td>${e.type}</td>
+        <td>${e.avail}</td>
+        <td><span class="badge ${statusClass}">${statusText}</span></td>
+      </tr>
+    `;
   });
-
-  const grid = document.getElementById('eq-grid');
-  if (!list.length) {
-    grid.innerHTML = `<div class="empty"><div class="ico">🔍</div><p>No equipment found.</p></div>`;
-    return;
-  }
-
-  grid.innerHTML = list.map((e, i) => {
-    const pct = e.qty ? Math.round(e.available / e.qty * 100) : 0;
-    const bc = pct > 60 ? '#10b981' : pct > 30 ? '#f59e0b' : '#ef4444';
-    const [ico, icClass] = ICONS[e.cat] || ['📦', 'ic-other'];
-    const condClass = e.cond === 'Good' ? 'cond-good' : e.cond === 'Fair' ? 'cond-fair' : 'cond-rep';
-    return `<div class="eq-card" style="animation-delay:${i * 0.04}s">
-      <div class="eq-icon ${icClass}">${ico}</div>
-      <div class="eq-name">${e.name}</div>
-      <div class="eq-cat">${e.cat}</div>
-      <div class="eq-counts">
-        <div class="eq-count">
-          <div class="eq-count-num green">${e.available}</div>
-          <div class="eq-count-label">Available</div>
-        </div>
-        <div class="eq-count" style="border-left:1px solid #e2e8f0">
-          <div class="eq-count-num muted">${e.qty}</div>
-          <div class="eq-count-label">Total</div>
-        </div>
-      </div>
-      <div class="eq-bar"><div class="eq-bar-inner" style="width:${pct}%;background:${bc}"></div></div>
-      <div class="eq-footer">
-        <span class="cond ${condClass}">${e.cond}</span>
-        <span class="avail ${e.available > 0 ? 'avail-yes' : 'avail-no'}">
-          ${e.available > 0 ? '✓ Available' : '✗ Unavailable'}
-        </span>
-      </div>
-    </div>`;
-  }).join('');
 }
 
-function openMyBorrows() {
-  const borrows = JSON.parse(localStorage.getItem('scc_borrows') || '[]');
-  const mine = borrows.filter(b => b.borrowerID === userId);
-  document.getElementById('modal-uid').textContent = userId;
-  const el = document.getElementById('my-borrows-list');
-  if (!mine.length) {
-    el.innerHTML = '<p style="text-align:center;color:var(--muted);padding:28px">No records found for your ID.</p>';
-  } else {
-    el.innerHTML = [...mine].reverse().map(b => {
-      const bClass = b.status === 'Returned' ? 'badge-green' : b.status === 'Overdue' ? 'badge-red' : 'badge-gold';
-      return `<div class="borrow-rec">
-        <div class="borrow-rec-top">
-          <div>
-            <div class="borrow-rec-name">${b.eq} × ${b.qty}</div>
-            <div class="borrow-rec-meta">Borrowed: ${b.borrowed} · Due: ${b.due}</div>
-            ${b.purpose ? `<div class="borrow-rec-meta">Purpose: ${b.purpose}</div>` : ''}
-          </div>
-          <span class="badge ${bClass}">${b.status.toUpperCase()}</span>
-        </div>
-        ${b.returnDate ? `<div class="borrow-rec-meta" style="color:#0f766e;margin-top:4px">✅ Returned: ${b.returnDate}</div>` : ''}
-      </div>`;
-    }).join('');
-  }
-  document.getElementById('modal-myborrows').classList.add('open');
+function logout() {
+  localStorage.removeItem("role");
+  window.location.href = "index.html";
 }
-
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
-});
-
-function logout() { localStorage.removeItem('scc_role'); window.location.href = 'index.html'; }
 
 render();
-setInterval(render, 10000);
 </script>
+
 </body>
 </html>
