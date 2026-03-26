@@ -2,241 +2,306 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sports Equipment System — SCC</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Sports Office Login</title>
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 body{
-  font-family:'Inter',sans-serif;
-  min-height:100vh;
-  background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
-              url('scc4.jpg') center/cover no-repeat fixed;
-  display:flex;flex-direction:column;
+    height:100vh;
 }
 
-/* TOP BAR */
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 32px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,0.12);
-}
-.topbar-left{display:flex;align-items:center;gap:12px;}
-.topbar-logo{
-  width:44px;height:44px;border-radius:50%;
-  background:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:20px;overflow:hidden;border:2px solid rgba(255,255,255,0.4);
-}
-.topbar-logo img{width:100%;height:100%;object-fit:cover;}
-.topbar-title{color:#fff;}
-.topbar-title strong{display:block;font-size:15px;font-weight:600;}
-.topbar-title span{font-size:12px;opacity:.75;}
-.topbar-date{color:rgba(255,255,255,.8);font-size:13px;}
-
-/* MAIN LAYOUT */
-.page{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  padding:40px 24px;
-}
-.layout{
-  display:grid;grid-template-columns:1fr 420px;
-  gap:60px;width:100%;max-width:1000px;align-items:center;
+.wrapper{
+    height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("scc4.jpg");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:100px;
+    color:white;
 }
 
-/* LEFT */
-.left-content{color:#fff;}
-.left-content h1{
-  font-size:clamp(32px,5vw,52px);font-weight:700;
-  line-height:1.15;margin-bottom:6px;
+.left{
+    max-width:520px;
 }
-.left-content h1 span{color:#fbbf24;}
-.left-content h2{
-  font-size:clamp(15px,2vw,18px);font-weight:500;
-  margin-bottom:16px;opacity:.9;
-}
-.left-content p{font-size:14px;line-height:1.8;opacity:.8;max-width:400px;}
 
-/* LOGIN CARD */
-.card{
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,0.28);
-  border-radius:16px;padding:36px 32px;
-  box-shadow:0 24px 60px rgba(0,0,0,0.35);
-  color:#fff;
+.left h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:44px;
+    margin-bottom:15px;
 }
-.card h3{font-size:26px;font-weight:700;margin-bottom:4px;}
-.card small{display:block;font-size:13px;opacity:.75;margin-bottom:28px;}
 
-/* ROLE TOGGLE */
-.role-toggle{
-  display:grid;grid-template-columns:1fr 1fr;
-  background:rgba(0,0,0,0.2);border-radius:10px;padding:4px;
-  margin-bottom:24px;gap:4px;
+.left h1 span{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:#fbbf24;
 }
+
+.left h3{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.left p{
+    font-size:15px;
+    line-height:1.6;
+    opacity:0.9;
+}
+
+/* GLASS LOGIN CARD */
+.login-card{
+    margin-left:clamp(40px, 10vw, 160px);
+    width:360px;
+    padding:40px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+    color:white;
+}
+
+.login-card h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.login-card small{
+    display:block;
+    margin-bottom:25px;
+    opacity:0.85;
+}
+
+/* ROLE SELECTION */
+.role-select{
+    display:flex;
+    gap:12px;
+    margin-bottom:25px;
+}
+
 .role-btn{
-  padding:10px;border:none;border-radius:7px;
-  font-size:13px;font-weight:600;font-family:'Inter',sans-serif;
-  cursor:pointer;transition:all .22s;
-  background:transparent;color:rgba(255,255,255,.6);
-  display:flex;align-items:center;justify-content:center;gap:7px;
+    flex:1;
+    padding:14px 10px;
+    border-radius:10px;
+    border:2px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.1);
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.2s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    width:auto;
 }
-.role-btn:hover{color:#fff;}
+
+.role-btn:hover{
+    background:rgba(255,255,255,0.25);
+    border-color:white;
+}
+
 .role-btn.active{
-  background:#fff;color:#0f766e;
-  box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    background:#0f766e;
+    border-color:#0f766e;
 }
 
-/* FORM */
-.field{margin-bottom:16px;}
-.field label{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin-bottom:7px;}
+.role-btn .icon{
+    font-size:22px;
+}
+
+/* FIELDS */
+.field{
+    margin-bottom:18px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:5px;
+    font-size:14px;
+}
+
 .field input{
-  width:100%;padding:11px 14px;
-  background:rgba(255,255,255,0.18);
-  border:1.5px solid rgba(255,255,255,0.3);
-  border-radius:9px;color:#fff;font-size:14px;
-  font-family:'Inter',sans-serif;outline:none;transition:all .2s;
-}
-.field input::placeholder{color:rgba(255,255,255,.5);}
-.field input:focus{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.6);}
-
-.pass-section{overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .3s ease;}
-.pass-section.show{max-height:120px;opacity:1;}
-
-.remember{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:20px;cursor:pointer;}
-.remember input{width:15px;height:15px;cursor:pointer;accent-color:#0f766e;}
-  
-.btn-login{
-  width:100%;padding:13px;
-  background:linear-gradient(135deg,#0f766e,#0d9488);
-  border:none;border-radius:50px;
-  color:#fff;font-size:15px;font-weight:600;
-  font-family:'Inter',sans-serif;cursor:pointer;
-  transition:all .25s;letter-spacing:.02em;
-}
-.btn-login:hover{background:linear-gradient(135deg,#0d9488,#0f766e);transform:translateY(-1px);box-shadow:0 6px 20px rgba(15,118,110,.5);}
-
-.error{
-  display:none;margin-top:14px;
-  background:rgba(239,68,68,.18);border:1px solid rgba(239,68,68,.35);
-  border-radius:8px;padding:10px 14px;
-  font-size:13px;color:#fca5a5;text-align:center;
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid rgba(255,255,255,0.4);
+    background:rgba(255,255,255,0.18);
+    color:white;
+    outline:none;
+    font-size:14px;
 }
 
-/* RESPONSIVE */
-@media(max-width:780px){
-  .layout{grid-template-columns:1fr;gap:28px;}
-  .left-content{text-align:center;}
-  .left-content p{margin:0 auto;}
+.field input::placeholder{
+    color:rgba(255,255,255,0.7);
 }
-@media(max-width:480px){
-  .topbar{padding:12px 16px;}
-  .card{padding:28px 22px;}
+
+.options{
+    display:flex;
+    align-items:center;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.options input{
+    margin-right:8px;
+    width:auto;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn{
+    width:100%;
+    padding:11px;
+    background:#0f766e;
+    border:none;
+    color:white;
+    font-size:15px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:600;
+    transition:background 0.2s;
+}
+
+.submit-btn:hover{
+    background:#115e59;
+}
+
+/* Borrower direct entry */
+.borrower-info{
+    text-align:center;
+    padding:16px;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+    margin-bottom:20px;
+    font-size:14px;
+    line-height:1.7;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.borrower-info .check{
+    font-size:32px;
+    display:block;
+    margin-bottom:6px;
+}
+
+#error{
+    margin-top:10px;
+    color:#ffb4b4;
+    font-size:13px;
+    text-align:center;
+}
+
+@media(max-width:900px){
+    .wrapper{
+        flex-direction:column;
+        padding:40px;
+        text-align:center;
+    }
+    .login-card{
+        margin:40px 0 0;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-logo">🏫</div>
-    <div class="topbar-title">
-      <strong>Sports Equipment System</strong>
-      <span>Southern Christian College</span>
-    </div>
-  </div>
-  <div class="topbar-date" id="top-date"></div>
-</div>
+<div class="wrapper">
 
-<!-- MAIN -->
-<div class="page">
-  <div class="layout">
-
-    <!-- LEFT -->
-    <div class="left-content">
-      <h1>Southern Christian<br><span>College</span></h1>
-      <h2>Sports Office Equipment Borrowing System</h2>
-      <p>A secure system designed to manage sports equipment, track borrowing records, and support student athletic activities efficiently.</p>
+    <div class="left">
+        <h1>Southern Christian <span>College</span></h1>
+        <h3>Sports Office Equipment Borrowing System</h3>
+        <p>
+            A secure system designed to manage sports equipment,
+            track borrowing records, and support student athletic
+            activities efficiently.
+        </p>
     </div>
 
-    <!-- CARD -->
-    <div class="card">
-      <h3>Log in</h3>
-      <small>Select your role to continue</small>
+    <div class="login-card">
+        <h2>Log in</h2>
+        <small>Select your role to continue</small>
 
-      <!-- ROLE TOGGLE -->
-      <div class="role-toggle">
-        <button class="role-btn active" onclick="setRole('borrower',this)"> Borrower</button>
-        <button class="role-btn" onclick="setRole('admin',this)"> Admin</button>
-      </div>
-
-      <div class="field">
-        <label>Username / ID</label>
-        <input type="text" id="username" placeholder="Enter your ID or username" autocomplete="username">
-      </div>
-
-      <div class="pass-section" id="pass-section">
-        <div class="field">
-          <label>Password</label>
-          <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+        <!-- ROLE TOGGLE BUTTONS -->
+        <div class="role-select">
+            <button class="role-btn active" onclick="selectRole('borrower')" id="btn-borrower">
+                Borrower
+            </button>
+            <button class="role-btn" onclick="selectRole('admin')" id="btn-admin">
+                Admin
+            </button>
         </div>
-      </div>
 
-      <label class="remember">
-        <input type="checkbox" id="remember"> Keep me logged in
-      </label>
+        <!-- BORROWER: no credentials needed -->
+        <div id="borrower-view">
+            <div class="borrower-info">
+                You're entering as a <strong>Borrower</strong>.<br>
+                No credentials needed.
+            </div>
+            <button class="submit-btn" onclick="enterAsBorrower()">Enter as Borrower</button>
+        </div>
 
-      <button class="btn-login" onclick="doLogin()" id="login-btn">Log in</button>
-      <div class="error" id="error-msg"></div>
+        <!-- ADMIN: requires username + password -->
+        <div id="admin-view" style="display:none;">
+            <form id="loginForm">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter username">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password">
+                </div>
+                <div class="options">
+                    <input type="checkbox">
+                    <span>Keep me logged in</span>
+                </div>
+                <button class="submit-btn" type="submit">Log in as Admin</button>
+                <p id="error"></p>
+            </form>
+        </div>
+
     </div>
 
-  </div>
 </div>
 
 <script>
-let role = 'borrower';
-
-// Date
-const d = new Date();
-document.getElementById('top-date').textContent = d.toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
-
-function setRole(r, btn) {
-  role = r;
-  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const ps = document.getElementById('pass-section');
-  if (r==='admin') ps.classList.add('show');
-  else { ps.classList.remove('show'); document.getElementById('password').value=''; }
-  document.getElementById('login-btn').textContent = r==='admin' ? 'Access Dashboard' : 'Browse Equipment';
+function selectRole(role) {
+    document.getElementById('btn-borrower').classList.toggle('active', role === 'borrower');
+    document.getElementById('btn-admin').classList.toggle('active', role === 'admin');
+    document.getElementById('borrower-view').style.display = role === 'borrower' ? 'block' : 'none';
+    document.getElementById('admin-view').style.display   = role === 'admin'    ? 'block' : 'none';
+    const err = document.getElementById('error');
+    if (err) err.textContent = '';
 }
 
-function showError(msg) {
-  const e = document.getElementById('error-msg');
-  e.textContent = msg; e.style.display = 'block';
-  setTimeout(()=>e.style.display='none', 3000);
+function enterAsBorrower() {
+    localStorage.setItem("role", "borrower");
+    window.location.href = "equipment.html";
 }
 
-function doLogin() {
-  const u = document.getElementById('username').value.trim();
-  const p = document.getElementById('password').value;
-  if (!u) { showError('Please enter your username or ID.'); return; }
-  if (role==='admin') {
-    if (!p) { showError('Please enter the admin password.'); return; }
-    if (u==='admin' && p==='1234') {
-      localStorage.setItem('scc_role','admin');
-      localStorage.setItem('scc_user',u);
-      window.location.href = 'dashboard.html';
-    } else { showError('Invalid username or password.'); }
-  } else {
-    localStorage.setItem('scc_role','borrower');
-    localStorage.setItem('scc_user',u);
-    window.location.href = 'equipment.html';
-  }
-}
-document.addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+
+    if (u === "admin" && p === "1234") {
+        localStorage.setItem("role", "admin");
+        window.location.href = "dashboard0.2.html";
+    } else {
+        document.getElementById("error").textContent = "Invalid username or password";
+    }
+});
 </script>
+
 </body>
 </html>
