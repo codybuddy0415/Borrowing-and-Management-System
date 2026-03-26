@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sports Office Login</title>
 
 <style>
@@ -17,7 +18,7 @@ body{
 }
 
 .wrapper{
-    height:100vh;
+    min-height:100vh;
     background:
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
         url("scc4.jpg");
@@ -115,10 +116,6 @@ body{
     border-color:#0f766e;
 }
 
-.role-btn .icon{
-    font-size:22px;
-}
-
 /* FIELDS */
 .field{
     margin-bottom:18px;
@@ -187,12 +184,6 @@ body{
     border:1px solid rgba(255,255,255,0.2);
 }
 
-.borrower-info .check{
-    font-size:32px;
-    display:block;
-    margin-bottom:6px;
-}
-
 #error{
     margin-top:10px;
     color:#ffb4b4;
@@ -200,14 +191,117 @@ body{
     text-align:center;
 }
 
+/* ── TABLET (≤900px) ── */
 @media(max-width:900px){
     .wrapper{
         flex-direction:column;
-        padding:40px;
+        justify-content:center;
+        align-items:center;
+        padding:40px 24px;
         text-align:center;
     }
+
+    .left{
+        max-width:100%;
+    }
+
+    .left h1{
+        font-size:36px;
+        margin-bottom:12px;
+    }
+
+    .left h3{
+        font-size:18px;
+        margin-bottom:12px;
+    }
+
     .login-card{
-        margin:40px 0 0;
+        margin:28px 0 0;
+        width:100%;
+        max-width:420px;
+        padding:36px 28px;
+    }
+}
+
+/* ── MOBILE (≤480px) ── */
+@media(max-width:480px){
+    .wrapper{
+        padding:24px 16px;
+        align-items:stretch;
+        justify-content:flex-start;
+        overflow-y:auto;
+    }
+
+    .left h1{
+        font-size:24px;
+        margin-bottom:8px;
+    }
+
+    .left h3{
+        font-size:14px;
+        margin-bottom:8px;
+    }
+
+    .left p{
+        font-size:12px;
+        line-height:1.5;
+    }
+
+    .login-card{
+        margin:20px 0 0;
+        width:100%;
+        max-width:100%;
+        padding:24px 18px;
+        border-radius:12px;
+    }
+
+    .login-card h2{
+        font-size:22px;
+        margin-bottom:4px;
+    }
+
+    .login-card small{
+        font-size:12px;
+        margin-bottom:18px;
+    }
+
+    .role-select{
+        gap:8px;
+        margin-bottom:18px;
+    }
+
+    .role-btn{
+        padding:12px 8px;
+        font-size:13px;
+    }
+
+    .field{
+        margin-bottom:14px;
+    }
+
+    .field label{
+        font-size:13px;
+    }
+
+    .field input{
+        padding:9px;
+        font-size:13px;
+    }
+
+    .options{
+        font-size:12px;
+        margin-bottom:14px;
+    }
+
+    .submit-btn{
+        padding:10px;
+        font-size:14px;
+    }
+
+    .borrower-info{
+        padding:12px;
+        font-size:13px;
+        margin-bottom:14px;
     }
 }
 </style>
