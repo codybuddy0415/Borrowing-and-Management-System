@@ -1,122 +1,832 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Available Equipment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Equipment — SCC Sports Office</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --teal:        #0d7a6e;
+      --teal-dark:   #095f55;
+      --teal-light:  #e6f4f2;
+      --teal-mid:    #b2dbd7;
+      --gold:        #c9a84c;
+      --gold-light:  #fdf6e3;
+      --bg:          #f4f6f9;
+      --surface:     #ffffff;
+      --surface-2:   #f9fafb;
+      --border:      #e4e8ee;
+      --text:        #1a2636;
+      --text-mid:    #4a5568;
+      --text-soft:   #8a97a8;
+      --good-bg:     #d4f0ea; --good-fg: #0a5c52;
+      --fair-bg:     #fef3c7; --fair-fg: #92400e;
+      --bad-bg:      #fde8e8; --bad-fg:  #8b1a1a;
+      --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+      --shadow-md:   0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg:   0 8px 40px rgba(0,0,0,0.10);
+      --radius:      14px;
+      --radius-sm:   8px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
     body {
-      font-family: "Inter", sans-serif;
-      background: #f8fafc;
-      padding: 20px;
+      font-family: "Outfit", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    h1 {
-      color: #1e293b;
+    /* ══════════════════════════════════
+       HEADER
+    ══════════════════════════════════ */
+    .header {
+      background: var(--teal-dark);
+      background-image: linear-gradient(135deg, #0e1c3d 0%, #111e3b 60%, #0f172a 100%);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(9,95,85,0.35);
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 40px);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .header-logo svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+      opacity: 0.9;
+    }
+
+    .header-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-school {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(13px, 2.5vw, 16px);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+    }
+
+    .header-dept {
+      font-size: clamp(10px, 1.8vw, 12px);
+      opacity: 0.7;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    .header-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    .header-page {
+      font-size: clamp(12px, 2vw, 14px);
+      font-weight: 400;
+      opacity: 0.85;
+      letter-spacing: 0.3px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .header-badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-logout {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .btn-logout:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    /* ══════════════════════════════════
+       HERO STRIP
+    ══════════════════════════════════ */
+    .hero-strip {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: clamp(20px, 3vw, 32px) clamp(16px, 4vw, 40px);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .hero-title span {
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
+    .hero-date {
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 300;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════════ */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(20px, 3vw, 36px) clamp(16px, 4vw, 40px);
+    }
+
+    /* ══════════════════════════════════
+       STAT CARDS
+    ══════════════════════════════════ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+    }
+
+    .stat-card:nth-child(2)::before { background: var(--gold); }
+    .stat-card:nth-child(3)::before { background: #e05252; }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-desc {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 6px;
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════
+       TOOLBAR
+    ══════════════════════════════════ */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+
+    .record-count {
+      font-size: 12px;
+      color: var(--text-soft);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .search-box {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      stroke: var(--text-soft);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .search-box input {
+      padding: 9px 14px 9px 34px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 400;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      width: 230px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13,122,110,0.1);
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-soft);
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════
+       TABLE CARD
+    ══════════════════════════════════ */
+    .table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
+      min-width: 480px;
     }
 
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
+    thead {
+      background: var(--surface-2);
+      border-bottom: 2px solid var(--border);
     }
 
     th {
+      padding: 13px 18px;
       text-align: left;
-      font-size: 12px;
-      color: #64748b;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-soft);
+      white-space: nowrap;
+      user-select: none;
     }
 
+    td {
+      padding: 14px 18px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody tr {
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover {
+      background: var(--teal-light);
+    }
+
+    .col-name {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 14.5px;
+    }
+
+    .col-type {
+      color: var(--text-mid);
+      font-size: 13.5px;
+    }
+
+    .col-avail {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ══════════════════════════════════
+       BADGES
+    ══════════════════════════════════ */
     .badge {
-      padding: 5px 10px;
-      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .good  { background: var(--good-bg); color: var(--good-fg); }
+    .good  .badge-dot { background: var(--good-fg); }
+    .fair  { background: var(--fair-bg); color: var(--fair-fg); }
+    .fair  .badge-dot { background: var(--fair-fg); }
+    .bad   { background: var(--bad-bg);  color: var(--bad-fg);  }
+    .bad   .badge-dot { background: var(--bad-fg); }
+
+    /* ══════════════════════════════════
+       EMPTY STATE
+    ══════════════════════════════════ */
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .empty-state svg {
+      width: 52px;
+      height: 52px;
+      stroke: var(--border);
+      fill: none;
+      stroke-width: 1.5;
+      margin: 0 auto 14px;
+      display: block;
+    }
+
+    .empty-state h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-mid);
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════
+       MOBILE CARDS (≤ 540px)
+    ══════════════════════════════════ */
+    @media(max-width:540px) {
+      .table-scroll { display: none; }
+      .mobile-cards { display: block; }
+    }
+    @media(min-width:541px) {
+      .mobile-cards { display: none; }
+    }
+
+    .mobile-cards { padding: 4px 0; }
+
+    .m-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+      gap: 14px;
+      transition: background 0.15s;
+    }
+
+    .m-card:last-child { border-bottom: none; }
+    .m-card:hover { background: var(--teal-light); }
+
+    .m-card-info { flex: 1; min-width: 0; }
+
+    .m-card-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 3px;
+    }
+
+    .m-card-type {
+      font-size: 12.5px;
+      color: var(--text-soft);
+      font-weight: 300;
+    }
+
+    .m-card-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .m-card-qty {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .m-card-qty-label {
+      font-size: 10px;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: -4px;
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    .table-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
       font-size: 12px;
+      color: var(--text-soft);
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .good { background:#d1fae5; color:#065f46; }
-    .fair { background:#fef3c7; color:#92400e; }
-    .bad { background:#fee2e2; color:#991b1b; }
-
-    button {
-      margin-top: 15px;
-      padding: 8px 15px;
-      background: #6366f1;
-      color: white;
-      border: none;
-      border-radius: 8px;
+    /* ══════════════════════════════════
+       RESPONSIVE BREAKPOINTS
+    ══════════════════════════════════ */
+    @media(max-width:720px) {
+      .stats-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .stat-card { padding: 14px 14px; }
+      .stat-value { font-size: 26px; }
+      .header-divider, .header-page { display: none; }
+      .header-badge { display: none; }
     }
+
+    @media(max-width:480px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .stats-row .stat-card:last-child { grid-column: 1 / -1; }
+      .toolbar { flex-direction: column; align-items: flex-start; }
+      .search-box input { width: 100%; }
+      .search-box { width: 100%; }
+      .hero-date { display: none; }
+    }
+
+    @media(max-width:360px) {
+      .stats-row { grid-template-columns: 1fr; }
+      .stats-row .stat-card:last-child { grid-column: auto; }
+    }
+
+    /* ══════════════════════════════════
+       SCROLLBAR
+    ══════════════════════════════════ */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--teal-mid); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
+    .header-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
   </style>
 </head>
-
 <body>
 
-<h1>Available Equipment</h1>
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">
+  <img src="SCC logo.png" alt="SCC Logo">
+</div>
+      <div class="header-text-group">
+        <span class="header-school">Southern Christian College</span>
+        <span class="header-dept">Sports Office</span>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <span class="header-page">Equipment Borrowing System</span>
+    <div class="header-right">
+      <span class="header-badge">Borrower Portal</span>
+      <button class="btn-logout" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+</header>
 
-<div class="card">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Available</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="table"></tbody>
-  </table>
-
-  <button onclick="logout()">Logout</button>
+<!-- ══ HERO STRIP ══ -->
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div>
+      <h1 class="hero-title">Equipment <span>Inventory</span></h1>
+      <p class="hero-sub">View available sports equipment for borrowing.</p>
+    </div>
+    <span class="hero-date" id="currentDate"></span>
+  </div>
 </div>
 
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+  <!-- STAT CARDS -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card">
+      <div class="stat-label">Total Items</div>
+      <div class="stat-value" id="statTotal">—</div>
+      <div class="stat-desc">Equipment types on record</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Available Units</div>
+      <div class="stat-value" id="statAvail">—</div>
+      <div class="stat-desc">Units ready for borrowing</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Out of Stock</div>
+      <div class="stat-value" id="statOut">—</div>
+      <div class="stat-desc">Items currently unavailable</div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span class="section-title">Equipment List</span>
+      <span class="record-count" id="recordCount">0 records</span>
+    </div>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search equipment..." oninput="search(this.value)">
+    </div>
+  </div>
+
+  <!-- TABLE CARD -->
+  <div class="table-card">
+
+    <!-- DESKTOP TABLE -->
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Equipment Name</th>
+            <th>Category</th>
+            <th>Available</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- MOBILE CARDS -->
+    <div class="mobile-cards" id="mobileCards"></div>
+
+    <!-- FOOTER -->
+    <div class="table-footer" id="tableFooter">
+      <span id="footerInfo">Showing all records</span>
+      <span>SCC Sports Office &mdash; <span id="footerDate"></span></span>
+    </div>
+
+  </div>
+</main>
+
 <script>
-if (localStorage.getItem("role") !== "borrower") {
-  window.location.href = "index.html";
-}
+  // Auth guard
+  if (localStorage.getItem("role") !== "borrower") {
+    window.location.href = "index.html";
+  }
 
-let equipments = JSON.parse(localStorage.getItem("equipments")) || [];
+  const equipments = JSON.parse(localStorage.getItem("equipments")) || [];
 
-function render() {
-  let table = document.getElementById("table");
-  table.innerHTML = "";
+  // Date
+  const now = new Date();
+  const dateStr = now.toLocaleDateString("en-US", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
+  document.getElementById("currentDate").textContent = dateStr;
+  document.getElementById("footerDate").textContent  = now.toLocaleDateString("en-US", { year:"numeric", month:"short", day:"numeric" });
 
-  equipments.forEach(e => {
-    let statusClass =
-      e.avail === 0 ? "bad" :
-      e.avail <= 2 ? "fair" : "good";
+  function getStatus(avail) {
+    if (avail === 0)  return { cls:"bad",  text:"Out of Stock" };
+    if (avail <= 2)   return { cls:"fair", text:"Low Stock" };
+    return               { cls:"good", text:"Available" };
+  }
 
-    let statusText =
-      e.avail === 0 ? "Out of Stock" :
-      e.avail <= 2 ? "Low Stock" : "Available";
+  function render(list) {
+    const tbody       = document.getElementById("tableBody");
+    const mobileCards = document.getElementById("mobileCards");
+    const footerInfo  = document.getElementById("footerInfo");
+    const recordCount = document.getElementById("recordCount");
 
-    table.innerHTML += `
-      <tr>
-        <td>${e.name}</td>
-        <td>${e.type}</td>
-        <td>${e.avail}</td>
-        <td><span class="badge ${statusClass}">${statusText}</span></td>
-      </tr>
-    `;
-  });
-}
+    tbody.innerHTML = "";
+    mobileCards.innerHTML = "";
 
-function logout() {
-  localStorage.removeItem("role");
-  window.location.href = "index.html";
-}
+    recordCount.textContent = list.length + " record" + (list.length !== 1 ? "s" : "");
 
-render();
+    if (list.length === 0) {
+      const empty = `
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+            <path d="M16 3H8L6 7h12l-2-4z"/>
+          </svg>
+          <h3>No Equipment Found</h3>
+          <p>No records match your search criteria.</p>
+        </div>`;
+      tbody.innerHTML  = `<tr><td colspan="4">${empty}</td></tr>`;
+      mobileCards.innerHTML = empty;
+      footerInfo.textContent = "No records to display";
+      return;
+    }
+
+    list.forEach((e, i) => {
+      const s = getStatus(e.avail);
+
+      tbody.innerHTML += `
+        <tr style="animation: fadeUp 0.3s ease ${i * 0.04}s both">
+          <td class="col-name">${e.name}</td>
+          <td class="col-type">${e.type}</td>
+          <td class="col-avail">${e.avail}</td>
+          <td>
+            <span class="badge ${s.cls}">
+              <span class="badge-dot"></span>${s.text}
+            </span>
+          </td>
+        </tr>`;
+
+      mobileCards.innerHTML += `
+        <div class="m-card">
+          <div class="m-card-info">
+            <div class="m-card-name">${e.name}</div>
+            <div class="m-card-type">${e.type}</div>
+          </div>
+          <div class="m-card-right">
+            <div class="m-card-qty">${e.avail}</div>
+            <div class="m-card-qty-label">available</div>
+            <span class="badge ${s.cls}">
+              <span class="badge-dot"></span>${s.text}
+            </span>
+          </div>
+        </div>`;
+    });
+
+    const keyword = document.getElementById("searchInput").value;
+    footerInfo.textContent = keyword
+      ? `Showing ${list.length} of ${equipments.length} records`
+      : `Showing all ${list.length} records`;
+
+    // Stats
+    const totalUnits = equipments.reduce((s, e) => s + e.total, 0);
+    const availUnits = equipments.reduce((s, e) => s + e.avail, 0);
+    const outCount   = equipments.filter(e => e.avail === 0).length;
+    document.getElementById("statTotal").textContent = equipments.length;
+    document.getElementById("statAvail").textContent = availUnits;
+    document.getElementById("statOut").textContent   = outCount;
+  }
+
+  function search(keyword) {
+    const kw = keyword.trim().toLowerCase();
+    const filtered = kw
+      ? equipments.filter(e =>
+          e.name.toLowerCase().includes(kw) ||
+          e.type.toLowerCase().includes(kw))
+      : equipments;
+    render(filtered);
+  }
+
+  function logout() {
+    localStorage.removeItem("role");
+    window.location.href = "index.html";
+  }
+
+  render(equipments);
 </script>
-
 </body>
 </html>
