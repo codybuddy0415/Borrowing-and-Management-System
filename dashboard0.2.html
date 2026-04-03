@@ -4,17 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sports Equipment Borrowing System</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-     <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
       :root {
-        /* Light Theme - Softer, More Chill Colors */
         --primary: #6366f1;
         --primary-dark: #4f46e5;
         --primary-light: #818cf8;
@@ -26,16 +19,16 @@
         --dark: #1e293b;
         --dark-secondary: #334155;
         --light-bg: #f8fafc;
-        --light-bg2:#111b33b4;
+        --light-bg2: #111b33b4;
         --card-bg: #ffffff;
-        --card-bg2:  #0f172a;
+        --card-bg2: #0f172a;
         --text-primary: #1e293b;
         --text-primary2: white;
         --border: #e2e8f0;
-        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-        --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-        --shadow-hover: 0 12px 24px rgba(99, 102, 241, 0.12);
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+        --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        --shadow-hover: 0 12px 24px rgba(99,102,241,0.12);
       }
       body.dark {
         --primary: #818cf8;
@@ -46,795 +39,175 @@
         --text-primary: #f1f5f9;
         --text-secondary: #94a3b8;
         --border: #334155;
-        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-        --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
-        --shadow-hover: 0 12px 24px rgba(129, 140, 248, 0.15);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-        background: var(--light-bg);
-        color: var(--text-primary);
-        transition: background 0.3s ease, color 0.3s ease;
-        line-height: 1.6;
-      }
-
-      /* Typography - More Relaxed */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-        line-height: 1.3;
-      }
-
-      h1 {
-        font-size: clamp(24px, 5vw, 32px);
-        margin-bottom: 8px;
-        color: var(--text-primary);
-      }
-
-      /* Top Header - Simplified */
-      .top-header {
-        height: 64px;
-        background: var(--card-bg);
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 clamp(16px, 4vw, 32px);
-        box-shadow: var(--shadow-sm);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-      }
-
-      .top-header h2 {
-        font-size: clamp(16px, 3vw, 18px);
-        font-weight: 600;
-        color: var(--text-primary);
-      }
-
-      .header-right {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 13px;
-        color: var(--text-secondary);
-      }
-
-      .theme-toggle {
-        background: var(--light-bg);
-        border: 1px solid var(--border);
-        cursor: pointer;
-        font-size: 16px;
-        color: var(--text-primary);
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-      }
-
-      .theme-toggle:hover {
-        background: var(--primary);
-        color: white;
-      }
-
-      /* Container */
-      .container {
-        display: flex;
-        height: 100vh;
-      }
-      /* Sidebar - Mobile Friendly */
-      .sidebar {
-        width: 260px;
-        background: var(--card-bg2);
-        border-right: 1px solid var(--border);
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        transition: all 0.3s ease;
-        position: relative;
-      }
-
-      .mobile-menu-toggle {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 200;
-        background: var(--primary);
-        color: white;
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        border: none;
-        box-shadow: var(--shadow-lg);
-        cursor: pointer;
-        font-size: 20px;
-      }
-
-      .sidebar-logo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 24px;
-        padding: 16px;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border-radius: 12px;
-      }
-
-      .sidebar-logo img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        margin-bottom: 10px;
-      }
-
-      .sidebar-logo h3 {
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-      }
-
-      .sidebar button {
-        width: 100%;
-        padding: 12px 16px;
-        margin-bottom: 6px;
-        border: none;
-        background: var(--light-bg2);
-        color: var(--text-primary2);
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        font-family: "Inter", sans-serif;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .sidebar button:hover {
-        background: var(--primary);
-        color: white;
-        transform: translateX(2px);
-      }
-
-      .sidebar button.active {
-        background: var(--primary);
-        color: white;
-      }
-
-      .sidebar button.logout {
-        background: #fee2e2;
-        color: #dc2626;
-        margin-top: auto;
-      }
-
-      body.dark .sidebar button.logout {
-        background: #7f1d1d;
-        color: #fca5a5;
-      }
-
-      .sidebar button.logout:hover {
-        background: #dc2626;
-        color: white;
-      }
-
-      /* Admin Profile */
-      .admin-profile {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--light-bg2);
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 12px;
-        border: 1px solid var(--border);
-            /* FIXED LOCATION */
-        position: absolute;
-        bottom: 65px; /* sits above logout */
-        left: 20px;
-        right: 20px;
-      }
-
-      .admin-profile img {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid var(--primary);
-      }
-
-      .admin-profile div {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .admin-profile strong {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--text-primary2);
-      }
-
-      .admin-profile span {
-        font-size: 11px;
-        color: var(--text-primary2);
-      }
-
-      /* Main Content */
-      .main {
-        flex: 1;
-        padding: clamp(16px, 4vw, 28px);
-        overflow: auto;
-        position: relative;
-      }
-
-      /* Dashboard Stats - Responsive Grid */
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin-bottom: 24px;
-      }
-
-      /* Dashboard Cards - Softer Design */
-      .dash-card {
-        background: var(--card-bg);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: var(--shadow-sm);
-        transition: all 0.2s ease;
-        border: 1px solid var(--border);
-      }
-
-      .dash-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-hover);
-      }
-
-      .dash-top {
-        background: #f1f2f3bb;
-        padding: 15px 18px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 15px;
-        font-weight: 450;
-        color: #1e293b;
-        letter-spacing: 0.5px;
-      }
-
-      .dash-top i {
-        font-size: 20px;
-        color: var(--primary);
-        opacity: 0.6;
-      }
-
-      .dash-body {
-        padding: 20px;
-        text-align: center;
-      }
-
-      .dash-body h2 {
-        font-size: clamp(32px, 6vw, 42px);
-        font-weight: 700;
-        margin: 0;
-        color: var(--primary);
-      }
-
-      .dash-sub {
-        font-size: 12px;
-        color: var(--text-secondary);
-        margin-top: 6px;
-        font-weight: 400;
-      }
-
-      /* Sections */
-      .section {
-        background: var(--card-bg);
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .section h3 {
-        margin-bottom: 16px;
-        font-size: 18px;
-        color: var(--text-primary);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      /* Warning Section */
-      #warningSection {
-        background: linear-gradient(135deg, #fef2f2, #fee2e2);
-        border-left: 4px solid var(--danger);
-      }
-
-      body.dark #warningSection {
-        background: linear-gradient(135deg, #450a0a, #7f1d1d);
-      }
-
-      #warnings li {
-        padding: 6px 0;
-        font-weight: 500;
-        list-style: none;
-        padding-left: 20px;
-        position: relative;
-        font-size: 14px;
-      }
-
-      #warnings li::before {
-        content: "⚠";
-        position: absolute;
-        left: 0;
-        font-size: 14px;
-      }
-
-      /* Tables - Responsive */
-      .table-box {
-        background: var(--card-bg);
-        border-radius: 12px;
-        overflow-x: auto;
-        overflow-y: visible;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-sm);
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        min-width: 800px;
-      }
-
-      thead {
-        background: var(--light-bg);
-      }
-
-      th {
-        padding: 12px;
-        text-align: left;
-        font-weight: 1000;
-        font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--text-secondary);
-        border-bottom: 1px solid var(--border);
-        white-space: nowrap;
-      }
-
-      td {
-        padding: 12px;
-        border-bottom: 1px solid var(--border);
-        font-size: 15px;
-        color: var(--text-primary);
-      }
-
-      tbody tr {
-        transition: all 0.2s ease;
-      }
-
-      tbody tr:hover {
-        background: var(--light-bg);
-      }
-
-      /* Badges - Softer */
-      .badge {
-        padding: 4px 10px;
-        border-radius: 6px;
-        font-size: 11px;
-        font-weight: 600;
-        display: inline-block;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-      }
-
-      .badge.new {
-        background: #e0f2fe;
-        color: #0369a1;
-      }
-
-      body.dark .badge.new {
-        background: #0c4a6e;
-        color: #bae6fd;
-      }
-
-      .badge.good {
-        background: #d1fae5;
-        color: #065f46;
-      }
-
-      body.dark .badge.good {
-        background: #064e3b;
-        color: #a7f3d0;
-      }
-
-      .badge.fair {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      body.dark .badge.fair {
-        background: #78350f;
-        color: #fde68a;
-      }
-
-      .badge.bad {
-        background: #fee2e2;
-        color: #991b1b;
-      }
-
-      body.dark .badge.bad {
-        background: #7f1d1d;
-        color: #fca5a5;
-      }
-
-      /* Status Pills */
-      .status-pill {
-        padding: 4px 12px;
-        border-radius: 6px;
-        font-size: 11px;
-        font-weight: 600;
-        color: white;
-        display: inline-block;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-      }
-
-      .status-pill.borrowed {
-        background: var(--warning);
-      }
-
-      .status-pill.returned {
-        background: var(--success);
-      }
-
-      .status-pill.overdue {
-        background: var(--danger);
-      }
-
-      /* Actions */
-      .actions {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .actions i {
-        cursor: pointer;
-        color: var(--text-secondary);
-        font-size: 14px;
-        transition: all 0.2s ease;
-      }
-
-      .actions i:hover {
-        color: var(--primary);
-        transform: scale(1.15);
-      }
-
-      .actions .fa-trash:hover {
-        color: var(--danger);
-      }
-
-      /* Inputs - Cleaner */
-      input,
-      select {
-        width: 100%;
-        padding: 10px 14px;
-        margin-bottom: 12px;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        font-size: 14px;
-        font-family: "Inter", sans-serif;
-        background: var(--card-bg);
-        color: var(--text-primary);
-        transition: all 0.2s ease;
-      }
-
-      input:focus,
-      select:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-      }
-
-      /* Buttons - Softer */
-      button.action {
-        background: var(--success);
-        border: none;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 500;
-        font-family: "Inter", sans-serif;
-        transition: all 0.2s ease;
-        font-size: 13px;
-      }
-
-      button.action:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-      }
-
-      button.return {
-        background: var(--warning);
-      }
-
-      button.print {
-        background: var(--primary);
-      }
-
-      button.filter {
-        background: var(--secondary);
-      }
-
-      button.reset {
-        background: #64748b;
-      }
-
-      /* Top Actions - Responsive */
-      .top-actions {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-      }
-
-      .top-actions input[type="text"] {
-        width: 100%;
-        max-width: 280px;
-        margin-bottom: 0;
-      }
-
-      .add-btn,
-      .add-loan-btn {
-        background: var(--primary);
-        color: white;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 13px;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.2s ease;
-        white-space: nowrap;
-      }
-
-      .add-btn:hover,
-      .add-loan-btn:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-      }
-
-      /* Modal - Responsive */
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        padding: 20px;
-      }
-
-      .modal-box {
-        background: var(--card-bg);
-        width: 100%;
-        max-width: 450px;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: var(--shadow-lg);
-        position: relative;
-        border: 1px solid var(--border);
-        max-height: 90vh;
-        overflow-y: auto;
-      }
-
-      .modal-box h2 {
-        margin-bottom: 20px;
-        color: var(--text-primary);
-        font-size: 20px;
-      }
-
-      .modal-close {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        font-size: 18px;
-        cursor: pointer;
-        color: var(--text-secondary);
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        transition: all 0.2s ease;
-      }
-
-      .modal-close:hover {
-        background: var(--light-bg);
-        color: var(--danger);
-      }
-
-      /* Hidden */
-      .hidden {
-        display: none !important;
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 1024px) {
-        .stats {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .container {
-          position: relative;
-        }
-
-        .sidebar {
-          position: fixed;
-          top: 64px;
-          left: -100%;
-          width: 280px;
-          height: calc(100vh - 64px);
-          z-index: 150;
-          box-shadow: var(--shadow-lg);
-          transition: left 0.3s ease;
-        }
-
-        .sidebar.active {
-          left: 0;
-        }
-
-        .mobile-menu-toggle {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .main {
-          width: 100%;
-          padding: 16px;
-        }
-
-        .top-header h2 {
-          font-size: 14px;
-        }
-
-        .header-right span {
-          display: none;
-        }
-
-        .stats {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 12px;
-        }
-
-        .dash-body h2 {
-          font-size: 28px;
-        }
-
-        .top-actions {
-          justify-content: stretch;
-        }
-
-        .top-actions input[type="text"] {
-          max-width: 100%;
-        }
-
-        .add-btn,
-        .add-loan-btn {
-          flex: 1;
-          justify-content: center;
-        }
-
-        table {
-          font-size: 12px;
-        }
-
-        th,
-        td {
-          padding: 8px;
-        }
-
-        .section {
-          padding: 16px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .stats {
-          grid-template-columns: 1fr;
-        }
-
-        .top-header {
-          height: auto;
-          padding: 12px 16px;
-        }
-
-        h1 {
-          font-size: 20px;
-        }
-
-        .modal-box {
-          padding: 20px;
-        }
-
-        .actions {
-          gap: 8px;
-        }
-      }
-
-      /* Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: var(--light-bg);
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--text-secondary);
-      }
-
-      /* Overlay for mobile menu */
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 64px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 64px);
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 140;
-      }
-
-      .overlay.active {
-        display: block;
-      }
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
+        --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+        --shadow-hover: 0 12px 24px rgba(129,140,248,0.15);
+      }
+      *{ margin:0; padding:0; box-sizing:border-box; }
+      body{ font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif; background:var(--light-bg); color:var(--text-primary); transition:background 0.3s ease,color 0.3s ease; line-height:1.6; }
+      h1,h2,h3,h4,h5,h6{ font-family:"Poppins",sans-serif; font-weight:600; line-height:1.3; }
+      h1{ font-size:clamp(24px,5vw,32px); margin-bottom:8px; color:var(--text-primary); }
+
+      .top-header{ height:64px; background:var(--card-bg); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 clamp(16px,4vw,32px); box-shadow:var(--shadow-sm); position:sticky; top:0; z-index:100; backdrop-filter:blur(10px); }
+      .top-header h2{ font-size:clamp(16px,3vw,18px); font-weight:600; color:var(--text-primary); }
+      .header-right{ display:flex; align-items:center; gap:12px; font-size:13px; color:var(--text-secondary); }
+      .theme-toggle{ background:var(--light-bg); border:1px solid var(--border); cursor:pointer; font-size:16px; color:var(--text-primary); width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; transition:all 0.2s ease; }
+      .theme-toggle:hover{ background:var(--primary); color:white; }
+
+      .container{ display:flex; height:100vh; }
+
+      .sidebar{ width:260px; background:var(--card-bg2); border-right:1px solid var(--border); padding:20px; display:flex; flex-direction:column; transition:all 0.3s ease; position:relative; }
+      .mobile-menu-toggle{ display:none; position:fixed; bottom:20px; right:20px; z-index:200; background:var(--primary); color:white; width:56px; height:56px; border-radius:50%; border:none; box-shadow:var(--shadow-lg); cursor:pointer; font-size:20px; }
+      .sidebar-logo{ display:flex; flex-direction:column; align-items:center; margin-bottom:24px; padding:16px; background:linear-gradient(135deg,var(--primary),var(--secondary)); border-radius:12px; }
+      .sidebar-logo img{ width:60px; height:60px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,0.3); margin-bottom:10px; }
+      .sidebar-logo h3{ color:white; font-size:14px; font-weight:600; text-align:center; }
+      .sidebar button{ width:100%; padding:12px 16px; margin-bottom:6px; border:none; background:var(--light-bg2); color:var(--text-primary2); border-radius:8px; cursor:pointer; font-size:14px; font-weight:500; font-family:"Inter",sans-serif; transition:all 0.2s ease; display:flex; align-items:center; gap:10px; }
+      .sidebar button:hover{ background:var(--primary); color:white; transform:translateX(2px); }
+      .sidebar button.active{ background:var(--primary); color:white; }
+      .sidebar button.logout{ background:#fee2e2; color:#dc2626; margin-top:auto; }
+      body.dark .sidebar button.logout{ background:#7f1d1d; color:#fca5a5; }
+      .sidebar button.logout:hover{ background:#dc2626; color:white; }
+
+      .admin-profile{ display:flex; align-items:center; gap:10px; background:var(--light-bg2); padding:12px; border-radius:8px; margin-bottom:12px; border:1px solid var(--border); position:absolute; bottom:65px; left:20px; right:20px; cursor:pointer; transition:background 0.2s,border-color 0.2s; }
+      .admin-profile:hover{ background:var(--primary); border-color:var(--primary); }
+      .admin-profile:hover .admin-cog{ color:white !important; transform:rotate(45deg); }
+      .admin-profile:hover strong, .admin-profile:hover span{ color:white !important; }
+      .admin-profile img{ width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid var(--primary); }
+      .admin-profile div{ display:flex; flex-direction:column; }
+      .admin-profile strong{ font-size:13px; font-weight:600; color:var(--text-primary2); }
+      .admin-profile span{ font-size:11px; color:var(--text-primary2); }
+
+      .main{ flex:1; padding:clamp(16px,4vw,28px); overflow:auto; position:relative; }
+
+      .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:24px; }
+      .dash-card{ background:var(--card-bg); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-sm); transition:all 0.2s ease; border:1px solid var(--border); }
+      .dash-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-hover); }
+      .dash-top{ background:#f1f2f3bb; padding:15px 18px; display:flex; justify-content:space-between; align-items:center; font-size:15px; font-weight:450; color:#1e293b; letter-spacing:0.5px; }
+      .dash-top i{ font-size:20px; color:var(--primary); opacity:0.6; }
+      .dash-body{ padding:20px; text-align:center; }
+      .dash-body h2{ font-size:clamp(32px,6vw,42px); font-weight:700; margin:0; color:var(--primary); }
+      .dash-sub{ font-size:12px; color:var(--text-secondary); margin-top:6px; font-weight:400; }
+
+      .section{ background:var(--card-bg); padding:20px; border-radius:12px; margin-bottom:20px; border:1px solid var(--border); box-shadow:var(--shadow-sm); }
+      .section h3{ margin-bottom:16px; font-size:18px; color:var(--text-primary); display:flex; align-items:center; gap:10px; }
+
+      /* Settings specific */
+      .settings-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+      @media(max-width:600px){ .settings-grid{ grid-template-columns:1fr; } }
+
+      .settings-card{ background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:24px; box-shadow:var(--shadow-sm); }
+      .settings-card h3{ font-size:16px; margin-bottom:18px; color:var(--text-primary); display:flex; align-items:center; gap:8px; }
+      .settings-card h3 i{ color:var(--primary); }
+
+      .form-group{ margin-bottom:14px; }
+      .form-group label{ display:block; font-size:13px; font-weight:500; color:var(--text-primary); margin-bottom:5px; }
+      .form-group input{ width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:8px; font-size:14px; font-family:"Inter",sans-serif; background:var(--card-bg); color:var(--text-primary); transition:all 0.2s; margin-bottom:0; }
+      .form-group input:focus{ outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(99,102,241,0.1); }
+
+      .form-hint{ font-size:11px; color:var(--text-secondary); margin-top:4px; }
+
+      .save-btn{ background:var(--primary); color:white; border:none; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:500; font-family:"Inter",sans-serif; cursor:pointer; display:flex; align-items:center; gap:8px; transition:all 0.2s; margin-top:4px; }
+      .save-btn:hover{ background:var(--primary-dark); transform:translateY(-1px); box-shadow:var(--shadow-md); }
+
+      .alert{ padding:10px 14px; border-radius:8px; font-size:13px; font-weight:500; margin-bottom:14px; display:none; }
+      .alert.success{ background:#d1fae5; color:#065f46; border:1px solid #6ee7b7; }
+      .alert.error{ background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; }
+      body.dark .alert.success{ background:#064e3b; color:#a7f3d0; }
+      body.dark .alert.error{ background:#7f1d1d; color:#fca5a5; }
+
+      .current-info{ background:var(--light-bg); border-radius:8px; padding:12px 14px; margin-bottom:16px; font-size:13px; color:var(--text-secondary); }
+      .current-info span{ font-weight:600; color:var(--text-primary); }
+
+      #warningSection{ background:linear-gradient(135deg,#fef2f2,#fee2e2); border-left:4px solid var(--danger); }
+      body.dark #warningSection{ background:linear-gradient(135deg,#450a0a,#7f1d1d); }
+      #warnings li{ padding:6px 0; font-weight:500; list-style:none; padding-left:20px; position:relative; font-size:14px; }
+      #warnings li::before{ content:"⚠"; position:absolute; left:0; font-size:14px; }
+
+      .table-box{ background:var(--card-bg); border-radius:12px; overflow-x:auto; overflow-y:visible; border:1px solid var(--border); box-shadow:var(--shadow-sm); }
+      table{ width:100%; border-collapse:collapse; min-width:800px; }
+      thead{ background:var(--light-bg); }
+      th{ padding:12px; text-align:left; font-weight:1000; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-secondary); border-bottom:1px solid var(--border); white-space:nowrap; }
+      td{ padding:12px; border-bottom:1px solid var(--border); font-size:15px; color:var(--text-primary); }
+      tbody tr{ transition:all 0.2s ease; }
+      tbody tr:hover{ background:var(--light-bg); }
+
+      .badge{ padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; display:inline-block; text-transform:uppercase; letter-spacing:0.3px; }
+      .badge.new{ background:#e0f2fe; color:#0369a1; }
+      body.dark .badge.new{ background:#0c4a6e; color:#bae6fd; }
+      .badge.good{ background:#d1fae5; color:#065f46; }
+      body.dark .badge.good{ background:#064e3b; color:#a7f3d0; }
+      .badge.fair{ background:#fef3c7; color:#92400e; }
+      body.dark .badge.fair{ background:#78350f; color:#fde68a; }
+      .badge.bad{ background:#fee2e2; color:#991b1b; }
+      body.dark .badge.bad{ background:#7f1d1d; color:#fca5a5; }
+
+      .status-pill{ padding:4px 12px; border-radius:6px; font-size:11px; font-weight:600; color:white; display:inline-block; text-transform:uppercase; letter-spacing:0.3px; }
+      .status-pill.borrowed{ background:var(--warning); }
+      .status-pill.returned{ background:var(--success); }
+      .status-pill.overdue{ background:var(--danger); }
+
+      .actions{ display:flex; gap:10px; align-items:center; }
+      .actions i{ cursor:pointer; color:var(--text-secondary); font-size:14px; transition:all 0.2s ease; }
+      .actions i:hover{ color:var(--primary); transform:scale(1.15); }
+      .actions .fa-trash:hover{ color:var(--danger); }
+
+      input, select{ width:100%; padding:10px 14px; margin-bottom:12px; border:1px solid var(--border); border-radius:8px; font-size:14px; font-family:"Inter",sans-serif; background:var(--card-bg); color:var(--text-primary); transition:all 0.2s ease; }
+      input:focus, select:focus{ outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(99,102,241,0.1); }
+
+      button.action{ background:var(--success); border:none; color:white; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:500; font-family:"Inter",sans-serif; transition:all 0.2s ease; font-size:13px; }
+      button.action:hover{ transform:translateY(-1px); box-shadow:var(--shadow-md); }
+      button.return{ background:var(--warning); }
+      button.print{ background:var(--primary); }
+      button.filter{ background:var(--secondary); }
+      button.reset{ background:#64748b; }
+
+      .top-actions{ display:flex; justify-content:flex-end; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+      .top-actions input[type="text"]{ width:100%; max-width:280px; margin-bottom:0; }
+      .add-btn, .add-loan-btn{ background:var(--primary); color:white; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:500; display:flex; align-items:center; gap:6px; transition:all 0.2s ease; white-space:nowrap; }
+      .add-btn:hover, .add-loan-btn:hover{ transform:translateY(-1px); box-shadow:var(--shadow-md); }
+
+      .modal{ position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
+      .modal-box{ background:var(--card-bg); width:100%; max-width:450px; padding:24px; border-radius:12px; box-shadow:var(--shadow-lg); position:relative; border:1px solid var(--border); max-height:90vh; overflow-y:auto; }
+      .modal-box h2{ margin-bottom:20px; color:var(--text-primary); font-size:20px; }
+      .modal-close{ position:absolute; top:12px; right:12px; font-size:18px; cursor:pointer; color:var(--text-secondary); width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:6px; transition:all 0.2s ease; }
+      .modal-close:hover{ background:var(--light-bg); color:var(--danger); }
+
+      .hidden{ display:none !important; }
+
+      @media(max-width:1024px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+      @media(max-width:768px){
+        .container{ position:relative; }
+        .sidebar{ position:fixed; top:64px; left:-100%; width:280px; height:calc(100vh - 64px); z-index:150; box-shadow:var(--shadow-lg); transition:left 0.3s ease; }
+        .sidebar.active{ left:0; }
+        .mobile-menu-toggle{ display:flex; align-items:center; justify-content:center; }
+        .main{ width:100%; padding:16px; }
+        .top-header h2{ font-size:14px; }
+        .header-right span{ display:none; }
+        .stats{ grid-template-columns:repeat(2,1fr); gap:12px; }
+        .dash-body h2{ font-size:28px; }
+        .top-actions{ justify-content:stretch; }
+        .top-actions input[type="text"]{ max-width:100%; }
+        .add-btn, .add-loan-btn{ flex:1; justify-content:center; }
+        table{ font-size:12px; }
+        th, td{ padding:8px; }
+        .section{ padding:16px; }
+      }
+      @media(max-width:480px){
+        .stats{ grid-template-columns:1fr; }
+        .top-header{ height:auto; padding:12px 16px; }
+        h1{ font-size:20px; }
+        .modal-box{ padding:20px; }
+        .actions{ gap:8px; }
+      }
+
+      ::-webkit-scrollbar{ width:8px; height:8px; }
+      ::-webkit-scrollbar-track{ background:var(--light-bg); }
+      ::-webkit-scrollbar-thumb{ background:var(--border); border-radius:4px; }
+      ::-webkit-scrollbar-thumb:hover{ background:var(--text-secondary); }
+
+      .overlay{ display:none; position:fixed; top:64px; left:0; width:100%; height:calc(100vh - 64px); background:rgba(0,0,0,0.5); z-index:140; }
+      .overlay.active{ display:block; }
     </style>
   </head>
   <body>
@@ -851,256 +224,140 @@
     <div class="overlay" onclick="toggleMobileMenu()"></div>
 
     <div class="container">
-      <!-- Sidebar -->
       <div class="sidebar" id="sidebar">
         <div class="sidebar-logo">
-          <img src="SCC logo 2.png" alt="SCC Logo" />
+          <img src="SCC logo 2.png" alt="SCC Logo"/>
           <h3>SCC Sports Office</h3>
         </div>
 
         <button onclick="show('dashboard'); closeMobileMenu()">
-          <i class="fas fa-home"></i>
-          <span>Dashboard</span>
+          <i class="fas fa-home"></i><span>Dashboard</span>
         </button>
         <button onclick="show('equipment'); closeMobileMenu()">
-          <i class="fas fa-box"></i>
-          <span>Equipment</span>
+          <i class="fas fa-box"></i><span>Equipment</span>
         </button>
         <button onclick="show('borrow'); closeMobileMenu()">
-          <i class="fas fa-clipboard-list"></i>
-          <span>Borrow</span>
+          <i class="fas fa-clipboard-list"></i><span>Borrow</span>
         </button>
         <button onclick="show('reports'); closeMobileMenu()">
-          <i class="fas fa-chart-bar"></i>
-          <span>Reports</span>
+          <i class="fas fa-chart-bar"></i><span>Reports</span>
         </button>
-
-        <div class="admin-profile">
-          <img src="SCC logo 2.png" alt="Admin" />
+        <div class="admin-profile" id="adminProfileCard" onclick="showSettings()" title="Account Settings">
+          <img src="SCC logo 2.png" alt="Admin"/>
           <div>
-            <strong>Admin</strong>
+            <strong id="sidebarName">Admin</strong>
             <span>Sports Office</span>
           </div>
+          <i class="fas fa-cog admin-cog" style="margin-left:auto;font-size:14px;color:rgba(255,255,255,0.5);transition:all 0.2s;"></i>
         </div>
 
         <button class="logout" onclick="logout()">
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Logout</span>
+          <i class="fas fa-sign-out-alt"></i><span>Logout</span>
         </button>
       </div>
 
-      <!-- Mobile Menu Toggle -->
       <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Main -->
       <div class="main">
+
         <!-- Dashboard -->
         <div id="dashboard">
           <h1>Dashboard</h1>
           <div class="stats">
             <div class="dash-card">
-              <div class="dash-top">
-                <span>Total Equipment</span>
-                <i class="fas fa-box"></i>
-              </div>
-              <div class="dash-body">
-                <h2 id="total">0</h2>
-                <p class="dash-sub">All items in inventory</p>
-              </div>
+              <div class="dash-top"><span>Total Equipment</span><i class="fas fa-box"></i></div>
+              <div class="dash-body"><h2 id="total">0</h2><p class="dash-sub">All items in inventory</p></div>
             </div>
-
             <div class="dash-card">
-              <div class="dash-top">
-                <span>Borrowed</span>
-                <i class="fas fa-clipboard-list"></i>
-              </div>
-              <div class="dash-body">
-                <h2 id="borrowed">0</h2>
-                <p class="dash-sub">Currently borrowed</p>
-              </div>
+              <div class="dash-top"><span>Borrowed</span><i class="fas fa-clipboard-list"></i></div>
+              <div class="dash-body"><h2 id="borrowed">0</h2><p class="dash-sub">Currently borrowed</p></div>
             </div>
-
             <div class="dash-card">
-              <div class="dash-top">
-                <span>Available</span>
-                <i class="fas fa-clipboard-check"></i>
-              </div>
-              <div class="dash-body">
-                <h2 id="available">0</h2>
-                <p class="dash-sub">Ready to use</p>
-              </div>
+              <div class="dash-top"><span>Available</span><i class="fas fa-clipboard-check"></i></div>
+              <div class="dash-body"><h2 id="available">0</h2><p class="dash-sub">Ready to use</p></div>
             </div>
-
             <div class="dash-card">
-              <div class="dash-top">
-                <span>Borrowers</span>
-                <i class="fas fa-user-alt"></i>
-              </div>
-              <div class="dash-body">
-                <h2 id="count">0</h2>
-                <p class="dash-sub">Total students</p>
-              </div>
+              <div class="dash-top"><span>Borrowers</span><i class="fas fa-user-alt"></i></div>
+              <div class="dash-body"><h2 id="count">0</h2><p class="dash-sub">Total students</p></div>
             </div>
           </div>
-
           <div class="section hidden" id="warningSection">
-            <h3>
-              <i class="fas fa-exclamation-triangle"></i>
-              Warnings
-            </h3>
+            <h3><i class="fas fa-exclamation-triangle"></i> Warnings</h3>
             <ul id="warnings"></ul>
           </div>
-
           <div class="section">
             <h3>Current Borrowers</h3>
             <div class="table-box">
               <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Equipment</th>
-                    <th>Qty</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Name</th><th>Equipment</th><th>Qty</th><th>Status</th></tr></thead>
                 <tbody id="dashboardBorrowers"></tbody>
               </table>
             </div>
           </div>
-
           <div class="section">
             <h3>Equipment Inventory</h3>
             <div class="table-box">
               <table>
-                <thead>
-                  <tr>
-                    <th>Equipment</th>
-                    <th>Total</th>
-                    <th>Available</th>
-                    <th>Borrowed</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Equipment</th><th>Total</th><th>Available</th><th>Borrowed</th><th>Status</th><th>Actions</th></tr></thead>
                 <tbody id="dashboardInventory"></tbody>
               </table>
             </div>
           </div>
         </div>
 
-        <!-- Equipment Management -->
+        <!-- Equipment -->
         <div id="equipment" class="hidden">
           <h1>Inventory Management</h1>
-          <p style="color: var(--text-secondary); margin-bottom: 20px;">
-            Track and manage sports equipment.
-          </p>
+          <p style="color:var(--text-secondary);margin-bottom:20px;">Track and manage sports equipment.</p>
           <div class="top-actions">
-            <input
-              type="text"
-              placeholder="🔎︎ Search equipment..."
-              onkeyup="searchEquipment(this.value)"
-            />
-            <button class="add-btn" onclick="toggleAddForm()">
-              <i class="fas fa-plus"></i> Add Item
-            </button>
+            <input type="text" placeholder="🔎︎ Search equipment..." onkeyup="searchEquipment(this.value)"/>
+            <button class="add-btn" onclick="toggleAddForm()"><i class="fas fa-plus"></i> Add Item</button>
           </div>
-
           <div id="addModal" class="modal hidden">
             <div class="modal-box">
-              <div class="modal-close" onclick="toggleAddForm()">
-                <i class="fas fa-times"></i>
-              </div>
-
+              <div class="modal-close" onclick="toggleAddForm()"><i class="fas fa-times"></i></div>
               <h2>Add Equipment</h2>
-
-              <input id="eqName" placeholder="Equipment Name" />
-              <input id="eqType" placeholder="Brand / Category" />
-              <input id="eqQty" type="number" placeholder="Total Quantity" />
-
-              <select id="eqCondition">
-                <option>New</option>
-                <option>Good</option>
-                <option>Fair</option>
-                <option>Bad</option>
-              </select>
-
+              <input id="eqName" placeholder="Equipment Name"/>
+              <input id="eqType" placeholder="Brand / Category"/>
+              <input id="eqQty" type="number" placeholder="Total Quantity"/>
+              <select id="eqCondition"><option>New</option><option>Good</option><option>Fair</option><option>Bad</option></select>
               <button class="action" onclick="addEquipment()">Save Item</button>
             </div>
           </div>
-
           <div class="table-box">
             <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Condition</th>
-                  <th>Available</th>
-                  <th>Total</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Name</th><th>Category</th><th>Condition</th><th>Available</th><th>Total</th><th>Actions</th></tr></thead>
               <tbody id="eqTable"></tbody>
             </table>
           </div>
         </div>
 
-        <!-- Borrow Management -->
+        <!-- Borrow -->
         <div id="borrow" class="hidden">
           <h1>Borrow Management</h1>
-          <p style="color: var(--text-secondary); margin-bottom: 20px;">
-            Manage student loans and returns.
-          </p>
+          <p style="color:var(--text-secondary);margin-bottom:20px;">Manage student loans and returns.</p>
           <div class="top-actions">
-            <input
-              type="text"
-              placeholder="🔎︎ Search student or item..."
-              onkeyup="searchBorrowers(this.value)"
-            />
-            <button class="add-loan-btn" onclick="toggleBorrowForm()">
-              <i class="fas fa-plus"></i> New Loan
-            </button>
+            <input type="text" placeholder="🔎︎ Search student or item..." onkeyup="searchBorrowers(this.value)"/>
+            <button class="add-loan-btn" onclick="toggleBorrowForm()"><i class="fas fa-plus"></i> New Loan</button>
           </div>
-
           <div id="borrowModal" class="modal hidden">
             <div class="modal-box">
-              <div class="modal-close" onclick="toggleBorrowForm()">
-                <i class="fas fa-times"></i>
-              </div>
-
+              <div class="modal-close" onclick="toggleBorrowForm()"><i class="fas fa-times"></i></div>
               <h2>New Loan</h2>
-
-              <input id="bName" placeholder="Borrower Name" />
-              <input id="bID" placeholder="ID Number" />
-              <input id="bCourse" placeholder="Purpose" />
-
+              <input id="bName" placeholder="Borrower Name"/>
+              <input id="bID" placeholder="ID Number"/>
+              <input id="bCourse" placeholder="Purpose"/>
               <select id="bEquip"></select>
-
-              <input id="bQty" type="number" placeholder="Quantity" />
-              <input id="bDue" type="date" />
-
+              <input id="bQty" type="number" placeholder="Quantity"/>
+              <input id="bDue" type="date"/>
               <button class="action" onclick="borrow()">Save Loan</button>
             </div>
           </div>
-
           <div class="table-box">
             <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>ID</th>
-                  <th>Purpose</th>
-                  <th>Equipment</th>
-                  <th>Qty</th>
-                  <th>Status</th>
-                  <th>Borrowed</th>
-                  <th>Due</th>
-                  <th>Returned</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Name</th><th>ID</th><th>Purpose</th><th>Equipment</th><th>Qty</th><th>Status</th><th>Borrowed</th><th>Due</th><th>Returned</th><th>Action</th></tr></thead>
               <tbody id="borrowTable"></tbody>
             </table>
           </div>
@@ -1110,488 +367,419 @@
         <div id="reports" class="hidden">
           <h1>Reports</h1>
           <div class="top-actions">
-            <button class="action filter" onclick="toggleFilterModal()">
-              <i class="fas fa-filter"></i> Filter
-            </button>
-            <button class="action print" onclick="window.print()">
-              <i class="fas fa-print"></i> Print
-            </button>
+            <button class="action filter" onclick="toggleFilterModal()"><i class="fas fa-filter"></i> Filter</button>
+            <button class="action print" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
           </div>
-
           <div id="filterModal" class="modal hidden">
             <div class="modal-box">
-              <div class="modal-close" onclick="toggleFilterModal()">
-                <i class="fas fa-times"></i>
-              </div>
-
+              <div class="modal-close" onclick="toggleFilterModal()"><i class="fas fa-times"></i></div>
               <h3>Filter Reports</h3>
-
-              <label style="display: block; margin-bottom: 4px; font-size: 13px; font-weight: 500;">From Date</label>
-              <input type="date" id="fromDate" />
-
-              <label style="display: block; margin-bottom: 4px; font-size: 13px; font-weight: 500;">To Date</label>
-              <input type="date" id="toDate" />
-
-              <div style="display: flex; gap: 10px; margin-top: 10px">
-                <button class="action filter" onclick="applyReportFilter()" style="flex: 1;">
-                  Apply
-                </button>
-                <button class="action reset" onclick="resetReports()" style="flex: 1;">
-                  Reset
-                </button>
+              <label style="display:block;margin-bottom:4px;font-size:13px;font-weight:500;">From Date</label>
+              <input type="date" id="fromDate"/>
+              <label style="display:block;margin-bottom:4px;font-size:13px;font-weight:500;">To Date</label>
+              <input type="date" id="toDate"/>
+              <div style="display:flex;gap:10px;margin-top:10px">
+                <button class="action filter" onclick="applyReportFilter()" style="flex:1;">Apply</button>
+                <button class="action reset" onclick="resetReports()" style="flex:1;">Reset</button>
               </div>
             </div>
           </div>
-
           <div class="section">
             <h3>Current Borrowers</h3>
             <div class="table-box">
               <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>ID</th>
-                    <th>Equipment</th>
-                    <th>Qty</th>
-                    <th>Status</th>
-                    <th>Borrowed</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Name</th><th>ID</th><th>Equipment</th><th>Qty</th><th>Status</th><th>Borrowed</th></tr></thead>
                 <tbody id="reportBorrowers"></tbody>
               </table>
             </div>
           </div>
-
           <div class="section">
             <h3>Equipment Inventory</h3>
             <div class="table-box">
               <table>
-                <thead>
-                  <tr>
-                    <th>Equipment</th>
-                    <th>Total</th>
-                    <th>Available</th>
-                    <th>Borrowed</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Equipment</th><th>Total</th><th>Available</th><th>Borrowed</th><th>Status</th></tr></thead>
                 <tbody id="reportInventory"></tbody>
               </table>
             </div>
           </div>
         </div>
+
+        <!-- ══ SETTINGS PAGE ══ -->
+        <div id="settings" class="hidden">
+          <h1>Settings</h1>
+          <p style="color:var(--text-secondary);margin-bottom:24px;">Manage your admin account credentials.</p>
+
+          <div class="settings-grid">
+
+            <!-- Profile Name -->
+            <div class="settings-card">
+              <h3><i class="fas fa-user"></i> Display Name</h3>
+              <div class="alert success" id="nameAlert"></div>
+              <div class="current-info">
+                Current name: <span id="currentNameDisplay">Admin</span>
+              </div>
+              <div class="form-group">
+                <label>New Display Name</label>
+                <input type="text" id="newName" placeholder="Enter new name"/>
+                <p class="form-hint">This name appears in the sidebar profile card.</p>
+              </div>
+              <button class="save-btn" onclick="saveName()">
+                <i class="fas fa-save"></i> Save Name
+              </button>
+            </div>
+
+            <!-- Username -->
+            <div class="settings-card">
+              <h3><i class="fas fa-id-badge"></i> Username</h3>
+              <div class="alert success" id="usernameAlert"></div>
+              <div class="current-info">
+                Current username: <span id="currentUsernameDisplay">admin</span>
+              </div>
+              <div class="form-group">
+                <label>New Username</label>
+                <input type="text" id="newUsername" placeholder="Enter new username" autocomplete="off"/>
+                <p class="form-hint">Used to log in as admin.</p>
+              </div>
+              <button class="save-btn" onclick="saveUsername()">
+                <i class="fas fa-save"></i> Save Username
+              </button>
+            </div>
+
+            <!-- Password -->
+            <div class="settings-card">
+              <h3><i class="fas fa-lock"></i> Password</h3>
+              <div class="alert" id="passwordAlert"></div>
+              <div class="form-group">
+                <label>Current Password</label>
+                <input type="password" id="currentPassword" placeholder="Enter current password" autocomplete="current-password"/>
+              </div>
+              <div class="form-group">
+                <label>New Password</label>
+                <input type="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password"/>
+                <p class="form-hint">Minimum 4 characters.</p>
+              </div>
+              <div class="form-group">
+                <label>Confirm New Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm new password" autocomplete="new-password"/>
+              </div>
+              <button class="save-btn" onclick="savePassword()">
+                <i class="fas fa-save"></i> Save Password
+              </button>
+            </div>
+
+            <!-- Current Credentials Summary -->
+            <div class="settings-card">
+              <h3><i class="fas fa-info-circle"></i> Login Summary</h3>
+              <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Your current login credentials for admin access.</p>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="background:var(--light-bg);border-radius:8px;padding:12px 14px;">
+                  <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-secondary);margin-bottom:4px;">Username</div>
+                  <div style="font-size:15px;font-weight:600;color:var(--text-primary);" id="summaryUsername">admin</div>
+                </div>
+                <div style="background:var(--light-bg);border-radius:8px;padding:12px 14px;">
+                  <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-secondary);margin-bottom:4px;">Password</div>
+                  <div style="font-size:15px;font-weight:600;color:var(--text-primary);" id="summaryPassword">••••</div>
+                </div>
+                <div style="background:var(--light-bg);border-radius:8px;padding:12px 14px;">
+                  <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-secondary);margin-bottom:4px;">Display Name</div>
+                  <div style="font-size:15px;font-weight:600;color:var(--text-primary);" id="summaryName">Admin</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- ══ END SETTINGS ══ -->
+
       </div>
     </div>
 
     <script>
-      // Initialize storage
-      let equipments = JSON.parse(localStorage.getItem("equipments")) || [];
-      let borrowers = JSON.parse(localStorage.getItem("borrowers")) || [];
+      // ── ADMIN CREDENTIALS (stored in localStorage) ──
+      let adminCreds = JSON.parse(localStorage.getItem('adminCreds')) || {
+        name:     'Admin',
+        username: 'admin',
+        password: '1234'
+      };
 
-      // Show date
-      document.getElementById("currentDate").textContent =
-        new Date().toDateString();
-
-      // Navigation
-      function show(id) {
-        document
-          .querySelectorAll(".main>div")
-          .forEach((d) => d.classList.add("hidden"));
-        document.getElementById(id).classList.remove("hidden");
-
-        // Update active button
-        document.querySelectorAll(".sidebar button").forEach((btn) => {
-          btn.classList.remove("active");
-        });
-        event.target.closest("button").classList.add("active");
+      function saveAdminCreds() {
+        localStorage.setItem('adminCreds', JSON.stringify(adminCreds));
       }
 
-      // Mobile menu
+      function refreshSettingsUI() {
+        document.getElementById('sidebarName').textContent         = adminCreds.name;
+        document.getElementById('currentNameDisplay').textContent  = adminCreds.name;
+        document.getElementById('currentUsernameDisplay').textContent = adminCreds.username;
+        document.getElementById('summaryUsername').textContent     = adminCreds.username;
+        document.getElementById('summaryName').textContent         = adminCreds.name;
+      }
+
+      // Save name
+      function saveName() {
+        const val = document.getElementById('newName').value.trim();
+        const alert = document.getElementById('nameAlert');
+        if (!val) { showAlert(alert, 'error', 'Please enter a name.'); return; }
+        adminCreds.name = val;
+        saveAdminCreds();
+        document.getElementById('newName').value = '';
+        refreshSettingsUI();
+        showAlert(alert, 'success', 'Display name updated successfully.');
+      }
+
+      // Save username
+      function saveUsername() {
+        const val = document.getElementById('newUsername').value.trim();
+        const alert = document.getElementById('usernameAlert');
+        if (!val) { showAlert(alert, 'error', 'Please enter a username.'); return; }
+        if (val.length < 3) { showAlert(alert, 'error', 'Username must be at least 3 characters.'); return; }
+        adminCreds.username = val;
+        saveAdminCreds();
+        document.getElementById('newUsername').value = '';
+        refreshSettingsUI();
+        showAlert(alert, 'success', 'Username updated successfully.');
+      }
+
+      // Save password
+      function savePassword() {
+        const current  = document.getElementById('currentPassword').value;
+        const newPw    = document.getElementById('newPassword').value;
+        const confirm  = document.getElementById('confirmPassword').value;
+        const alert    = document.getElementById('passwordAlert');
+
+        if (current !== adminCreds.password) {
+          showAlert(alert, 'error', 'Current password is incorrect.');
+          return;
+        }
+        if (!newPw || newPw.length < 4) {
+          showAlert(alert, 'error', 'New password must be at least 4 characters.');
+          return;
+        }
+        if (newPw !== confirm) {
+          showAlert(alert, 'error', 'Passwords do not match.');
+          return;
+        }
+        adminCreds.password = newPw;
+        saveAdminCreds();
+        document.getElementById('currentPassword').value = '';
+        document.getElementById('newPassword').value     = '';
+        document.getElementById('confirmPassword').value = '';
+        showAlert(alert, 'success', 'Password updated successfully.');
+      }
+
+      function showAlert(el, type, msg) {
+        el.className = 'alert ' + type;
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(() => { el.style.display = 'none'; }, 3500);
+      }
+
+      // ── EXISTING CODE (unchanged) ──
+      let equipments = JSON.parse(localStorage.getItem("equipments")) || [];
+      let borrowers  = JSON.parse(localStorage.getItem("borrowers"))  || [];
+
+      document.getElementById("currentDate").textContent = new Date().toDateString();
+
+      refreshSettingsUI();
+
+      function show(id) {
+  document.querySelectorAll(".main > div").forEach(d => d.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+
+  document.querySelectorAll(".sidebar button").forEach(btn => btn.classList.remove("active"));
+
+  const activeBtn = document.querySelector(`.sidebar button[onclick*="${id}"]`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  if (id === 'settings') refreshSettingsUI();
+
+  closeMobileMenu();
+}
+
+function showSettings() {
+  show('settings');
+}
       function toggleMobileMenu() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.querySelector(".overlay");
-        sidebar.classList.toggle("active");
-        overlay.classList.toggle("active");
+        document.getElementById("sidebar").classList.toggle("active");
+        document.querySelector(".overlay").classList.toggle("active");
       }
 
       function closeMobileMenu() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.querySelector(".overlay");
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
+        document.getElementById("sidebar").classList.remove("active");
+        document.querySelector(".overlay").classList.remove("active");
       }
 
-      // Dark mode
       function toggleTheme() {
         document.body.classList.toggle("dark");
-
         const icon = document.querySelector(".theme-toggle i");
-
         if (document.body.classList.contains("dark")) {
-          icon.classList.remove("fa-moon");
-          icon.classList.add("fa-sun");
+          icon.classList.replace("fa-moon","fa-sun");
         } else {
-          icon.classList.remove("fa-sun");
-          icon.classList.add("fa-moon");
+          icon.classList.replace("fa-sun","fa-moon");
         }
       }
 
-      // Toggle forms
-      function toggleAddForm() {
-        document.getElementById("addModal").classList.toggle("hidden");
-      }
+      function toggleAddForm()    { document.getElementById("addModal").classList.toggle("hidden"); }
+      function toggleBorrowForm() { document.getElementById("borrowModal").classList.toggle("hidden"); }
+      function toggleFilterModal(){ document.getElementById("filterModal").classList.toggle("hidden"); }
 
-      function toggleBorrowForm() {
-        document.getElementById("borrowModal").classList.toggle("hidden");
-      }
-
-      function toggleFilterModal() {
-        document.getElementById("filterModal").classList.toggle("hidden");
-      }
-
-      // Close modal when clicking outside
-      document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("modal")) {
-          e.target.classList.add("hidden");
-        }
+      document.addEventListener("click", function(e) {
+        if (e.target.classList.contains("modal")) e.target.classList.add("hidden");
       });
 
-      // Logout
       function logout() {
-        if (confirm("Logout?")) window.location.href = "index.html";
+        if (confirm("Logout?")) {
+          localStorage.removeItem("role");
+          window.location.href = "index.html";
+        }
       }
 
-      // Save to localStorage
       function save() {
         localStorage.setItem("equipments", JSON.stringify(equipments));
-        localStorage.setItem("borrowers", JSON.stringify(borrowers));
+        localStorage.setItem("borrowers",  JSON.stringify(borrowers));
       }
 
-      // Render all
       function render() {
         let eqTable = document.getElementById("eqTable");
-        let bEquip = document.getElementById("bEquip");
+        let bEquip  = document.getElementById("bEquip");
         let borrowTable = document.getElementById("borrowTable");
         let dashboardBorrowers = document.getElementById("dashboardBorrowers");
         let dashboardInventory = document.getElementById("dashboardInventory");
-        let reportBorrowers = document.getElementById("reportBorrowers");
+        let reportBorrowers    = document.getElementById("reportBorrowers");
         let warnings = document.getElementById("warnings");
 
-        eqTable.innerHTML =
-          bEquip.innerHTML =
-          borrowTable.innerHTML =
-          warnings.innerHTML =
-          dashboardBorrowers.innerHTML =
-          dashboardInventory.innerHTML =
-          reportBorrowers.innerHTML =
-            "";
+        eqTable.innerHTML = bEquip.innerHTML = borrowTable.innerHTML =
+          warnings.innerHTML = dashboardBorrowers.innerHTML =
+          dashboardInventory.innerHTML = reportBorrowers.innerHTML = "";
 
         let today = new Date().toISOString().split("T")[0];
 
-        // Equipments
         equipments.forEach((e, i) => {
           let borrowedQty = e.total - e.avail;
-          let statusClass =
-            e.avail === 0 ? "bad" : e.avail <= 2 ? "fair" : "good";
-          let statusText =
-            e.avail === 0
-              ? "Out of Stock"
-              : e.avail <= 2
-                ? "Low Stock"
-                : "Available";
+          let statusClass = e.avail === 0 ? "bad" : e.avail <= 2 ? "fair" : "good";
+          let statusText  = e.avail === 0 ? "Out of Stock" : e.avail <= 2 ? "Low Stock" : "Available";
 
-          if (e.avail === 0) {
-            warnings.innerHTML += `
-              <li style="color:red;font-weight:600;">
-                Out of Stock: ${e.name}
-              </li>`;
-          } else if (e.avail <= 2) {
-            warnings.innerHTML += `
-              <li style="color:orange;font-weight:600;">
-                Low Stock: ${e.name} (${e.avail} left)
-              </li>`;
-          }
+          if (e.avail === 0)   warnings.innerHTML += `<li style="color:red;font-weight:600;">Out of Stock: ${e.name}</li>`;
+          else if (e.avail<=2) warnings.innerHTML += `<li style="color:orange;font-weight:600;">Low Stock: ${e.name} (${e.avail} left)</li>`;
 
-          eqTable.innerHTML += `
-            <tr>
-                <td>${e.name}</td>
-                <td>${e.type}</td>
-                <td><span class="badge ${e.condition.toLowerCase()}">${e.condition}</span></td>
-                <td>${e.avail}</td>
-                <td>${e.total}</td>
-                <td>
-                  <div class="actions">
-                    <i class="fas fa-pen" onclick="editEquipment(${i})" title="Edit"></i>
-                    <i class="fas fa-trash" onclick="deleteEquipment(${i})" title="Delete"></i>
-                  </div>
-                </td>
-            </tr>`;
-
+          eqTable.innerHTML += `<tr><td>${e.name}</td><td>${e.type}</td><td><span class="badge ${e.condition.toLowerCase()}">${e.condition}</span></td><td>${e.avail}</td><td>${e.total}</td><td><div class="actions"><i class="fas fa-pen" onclick="editEquipment(${i})"></i><i class="fas fa-trash" onclick="deleteEquipment(${i})"></i></div></td></tr>`;
           bEquip.innerHTML += `<option value="${i}">${e.name}</option>`;
-
-          dashboardInventory.innerHTML += `
-            <tr>
-                <td>${e.name}</td>
-                <td>${e.total}</td>
-                <td>${e.avail}</td>
-                <td>${borrowedQty}</td>
-                <td><span class="badge ${statusClass}">${statusText}</span></td>
-                <td>
-                  <div class="actions">
-                    <i class="fas fa-pen" onclick="editEquipment(${i})" title="Edit"></i>
-                    <i class="fas fa-trash" onclick="deleteEquipment(${i})" title="Delete"></i>
-                  </div>
-                </td>
-            </tr>`;
+          dashboardInventory.innerHTML += `<tr><td>${e.name}</td><td>${e.total}</td><td>${e.avail}</td><td>${borrowedQty}</td><td><span class="badge ${statusClass}">${statusText}</span></td><td><div class="actions"><i class="fas fa-pen" onclick="editEquipment(${i})"></i><i class="fas fa-trash" onclick="deleteEquipment(${i})"></i></div></td></tr>`;
         });
 
-        // Borrowers
         borrowers.forEach((b, i) => {
           let status = b.status;
           let statusClass = "borrowed";
           if (status === "Returned") statusClass = "returned";
-          if (status === "Borrowed" && today > b.due) {
-            status = "Overdue";
-            statusClass = "overdue";
-            warnings.innerHTML += `<li>Overdue: ${b.name} (${b.equip})</li>`;
-          }
+          if (status === "Borrowed" && today > b.due) { status = "Overdue"; statusClass = "overdue"; warnings.innerHTML += `<li>Overdue: ${b.name} (${b.equip})</li>`; }
 
-          borrowTable.innerHTML += `
-            <tr>
-                <td>${b.name}</td>
-                <td>${b.id}</td>
-                <td>${b.course}</td>
-                <td>${b.equip}</td>
-                <td>${b.qty}</td>
-                <td><span class="status-pill ${statusClass}">${status}</span></td>
-                <td>${b.borrowed}</td>
-                <td>${b.due}</td>
-                <td>${b.returned}</td>
-                <td>${b.status !== "Returned" ? `<button class="action return" onclick="returnItem(${i})">Return</button>` : "—"}</td>
-            </tr>`;
-
-          dashboardBorrowers.innerHTML += `
-            <tr>
-                <td>${b.name}</td>
-                <td>${b.equip}</td>
-                <td>${b.qty}</td>
-                <td><span class="status-pill ${statusClass}">${status}</span></td>
-            </tr>`;
-
-          reportBorrowers.innerHTML += `
-            <tr>
-                <td>${b.name}</td>
-                <td>${b.id}</td>
-                <td>${b.equip}</td>
-                <td>${b.qty}</td>
-                <td><span class="status-pill ${statusClass}">${status}</span></td>
-                <td>${b.borrowed}</td>
-            </tr>`;
+          borrowTable.innerHTML += `<tr><td>${b.name}</td><td>${b.id}</td><td>${b.course}</td><td>${b.equip}</td><td>${b.qty}</td><td><span class="status-pill ${statusClass}">${status}</span></td><td>${b.borrowed}</td><td>${b.due}</td><td>${b.returned}</td><td>${b.status!=="Returned"?`<button class="action return" onclick="returnItem(${i})">Return</button>`:"—"}</td></tr>`;
+          dashboardBorrowers.innerHTML += `<tr><td>${b.name}</td><td>${b.equip}</td><td>${b.qty}</td><td><span class="status-pill ${statusClass}">${status}</span></td></tr>`;
+          reportBorrowers.innerHTML += `<tr><td>${b.name}</td><td>${b.id}</td><td>${b.equip}</td><td>${b.qty}</td><td><span class="status-pill ${statusClass}">${status}</span></td><td>${b.borrowed}</td></tr>`;
         });
 
-        // Report inventory
         let reportInventory = document.getElementById("reportInventory");
         reportInventory.innerHTML = "";
-
-        equipments.forEach((e) => {
+        equipments.forEach(e => {
           let borrowedQty = e.total - e.avail;
-          let statusClass =
-            e.avail === 0 ? "bad" : e.avail <= 2 ? "fair" : "good";
-          let statusText =
-            e.avail === 0
-              ? "Out of Stock"
-              : e.avail <= 2
-                ? "Low Stock"
-                : "Available";
-
-          reportInventory.innerHTML += `
-            <tr>
-              <td>${e.name}</td>
-              <td>${e.total}</td>
-              <td>${e.avail}</td>
-              <td>${borrowedQty}</td>
-              <td><span class="badge ${statusClass}">${statusText}</span></td>
-            </tr>`;
+          let statusClass = e.avail===0?"bad":e.avail<=2?"fair":"good";
+          let statusText  = e.avail===0?"Out of Stock":e.avail<=2?"Low Stock":"Available";
+          reportInventory.innerHTML += `<tr><td>${e.name}</td><td>${e.total}</td><td>${e.avail}</td><td>${borrowedQty}</td><td><span class="badge ${statusClass}">${statusText}</span></td></tr>`;
         });
 
-        // Dashboard stats
-        let totalT = equipments.reduce((s, e) => s + e.total, 0);
-        let availT = equipments.reduce((s, e) => s + e.avail, 0);
-        document.getElementById("total").innerText = totalT;
+        let totalT = equipments.reduce((s,e) => s+e.total, 0);
+        let availT = equipments.reduce((s,e) => s+e.avail, 0);
+        document.getElementById("total").innerText    = totalT;
         document.getElementById("available").innerText = availT;
-        document.getElementById("borrowed").innerText = totalT - availT;
-        document.getElementById("count").innerText = borrowers.length;
+        document.getElementById("borrowed").innerText  = totalT - availT;
+        document.getElementById("count").innerText     = borrowers.length;
 
-        // Show or hide warning section
-        if (warnings.innerHTML.trim() === "") {
-          document.getElementById("warningSection").classList.add("hidden");
-        } else {
-          document.getElementById("warningSection").classList.remove("hidden");
-        }
+        document.getElementById("warningSection").classList.toggle("hidden", warnings.innerHTML.trim() === "");
       }
 
-      // Add Equipment
       function addEquipment() {
         let name = document.getElementById("eqName").value;
         let type = document.getElementById("eqType").value;
-        let qty = parseInt(document.getElementById("eqQty").value);
+        let qty  = parseInt(document.getElementById("eqQty").value);
         let condition = document.getElementById("eqCondition").value;
-        if (!name || !type || !qty) return alert("Fill all fields");
-        equipments.push({ name, type, total: qty, avail: qty, condition });
-        document.getElementById("eqName").value =
-          document.getElementById("eqType").value =
-          document.getElementById("eqQty").value =
-            "";
-        save();
-        render();
-        toggleAddForm();
+        if (!name||!type||!qty) return alert("Fill all fields");
+        equipments.push({ name, type, total:qty, avail:qty, condition });
+        document.getElementById("eqName").value = document.getElementById("eqType").value = document.getElementById("eqQty").value = "";
+        save(); render(); toggleAddForm();
       }
 
-      // Edit Equipment
       function editEquipment(i) {
         let e = equipments[i];
-        let name = prompt("Name", e.name);
-        if (!name) return;
-        let type = prompt("Category", e.type);
-        if (!type) return;
-        let total = parseInt(prompt("Total", e.total));
-        if (isNaN(total)) return alert("Invalid");
+        let name = prompt("Name", e.name); if (!name) return;
+        let type = prompt("Category", e.type); if (!type) return;
+        let total = parseInt(prompt("Total", e.total)); if (isNaN(total)) return alert("Invalid");
         let borrowed = e.total - e.avail;
         if (total < borrowed) return alert("Cannot reduce below borrowed");
-        let condition = prompt("Condition", e.condition);
-        if (!condition) return;
-        e.name = name;
-        e.type = type;
-        e.total = total;
-        e.avail = total - borrowed;
-        e.condition = condition;
-        save();
-        render();
+        let condition = prompt("Condition", e.condition); if (!condition) return;
+        e.name=name; e.type=type; e.total=total; e.avail=total-borrowed; e.condition=condition;
+        save(); render();
       }
 
-      // Delete Equipment
       function deleteEquipment(i) {
-        if (borrowers.some((b) => b.idx === i && b.status !== "Returned"))
-          return alert("Cannot delete active borrowed equipment");
-        if (confirm("Delete?")) {
-          equipments.splice(i, 1);
-          save();
-          render();
-        }
+        if (borrowers.some(b => b.equip === equipments[i].name && b.status !== "Returned")) return alert("Cannot delete active borrowed equipment");
+        if (confirm("Delete?")) { equipments.splice(i,1); save(); render(); }
       }
 
-      // Borrow
       function borrow() {
-        let i = parseInt(document.getElementById("bEquip").value);
-        let q = parseInt(document.getElementById("bQty").value);
-        let due = document.getElementById("bDue").value;
+        let i    = parseInt(document.getElementById("bEquip").value);
+        let q    = parseInt(document.getElementById("bQty").value);
+        let due  = document.getElementById("bDue").value;
         let name = document.getElementById("bName").value;
-        let id = document.getElementById("bID").value;
+        let id   = document.getElementById("bID").value;
         let course = document.getElementById("bCourse").value;
-        if (q <= 0 || q > equipments[i].avail) return alert("Invalid quantity");
+        if (q<=0||q>equipments[i].avail) return alert("Invalid quantity");
         if (!due) return alert("Select due date");
         equipments[i].avail -= q;
-        borrowers.push({
-          name,
-          id,
-          course,
-          equip: equipments[i].name,
-          idx: i,
-          qty: q,
-          status: "Borrowed",
-          borrowed: new Date().toISOString().split("T")[0],
-          due,
-          returned: "—",
-        });
-        document.getElementById("bName").value =
-          document.getElementById("bID").value =
-          document.getElementById("bCourse").value =
-          document.getElementById("bQty").value =
-          document.getElementById("bDue").value =
-            "";
-        save();
-        render();
-        toggleBorrowForm();
+        borrowers.push({ name, id, course, equip:equipments[i].name, idx:i, qty:q, status:"Borrowed", borrowed:new Date().toISOString().split("T")[0], due, returned:"—" });
+        document.getElementById("bName").value = document.getElementById("bID").value = document.getElementById("bCourse").value = document.getElementById("bQty").value = document.getElementById("bDue").value = "";
+        save(); render(); toggleBorrowForm();
       }
 
-      // Return Item
       function returnItem(i) {
-        borrowers[i].status = "Returned";
+        borrowers[i].status   = "Returned";
         borrowers[i].returned = new Date().toISOString().split("T")[0];
         equipments[borrowers[i].idx].avail += borrowers[i].qty;
-        save();
-        render();
+        save(); render();
       }
 
-      // Apply Report Filter
       function applyReportFilter() {
         let from = document.getElementById("fromDate").value;
-        let to = document.getElementById("toDate").value;
-
+        let to   = document.getElementById("toDate").value;
         let reportBorrowers = document.getElementById("reportBorrowers");
-
-        if (from || to) {
+        if (from||to) {
           reportBorrowers.innerHTML = "";
-
-          borrowers
-            .filter(
-              (b) => (!from || b.borrowed >= from) && (!to || b.borrowed <= to),
-            )
-            .forEach((b) => {
-              let statusClass = "borrowed";
-              if (b.status === "Returned") statusClass = "returned";
-              if (
-                b.status === "Borrowed" &&
-                new Date().toISOString().split("T")[0] > b.due
-              )
-                statusClass = "overdue";
-
-              reportBorrowers.innerHTML += `
-                <tr>
-                  <td>${b.name}</td>
-                  <td>${b.id}</td>
-                  <td>${b.equip}</td>
-                  <td>${b.qty}</td>
-                  <td><span class="status-pill ${statusClass}">${b.status}</span></td>
-                  <td>${b.borrowed}</td>
-                </tr>`;
-            });
+          borrowers.filter(b => (!from||b.borrowed>=from)&&(!to||b.borrowed<=to)).forEach(b => {
+            let statusClass = b.status==="Returned"?"returned":b.status==="Borrowed"&&new Date().toISOString().split("T")[0]>b.due?"overdue":"borrowed";
+            reportBorrowers.innerHTML += `<tr><td>${b.name}</td><td>${b.id}</td><td>${b.equip}</td><td>${b.qty}</td><td><span class="status-pill ${statusClass}">${b.status}</span></td><td>${b.borrowed}</td></tr>`;
+          });
         }
-
         toggleFilterModal();
       }
 
-      // Reset Reports
       function resetReports() {
         document.getElementById("fromDate").value = "";
-        document.getElementById("toDate").value = "";
-        render();
-        toggleFilterModal();
+        document.getElementById("toDate").value   = "";
+        render(); toggleFilterModal();
       }
 
-      // Search Equipment
       function searchEquipment(keyword) {
         keyword = keyword.toLowerCase();
-        let rows = document.querySelectorAll("#eqTable tr");
-
-        rows.forEach((row) => {
-          let text = row.innerText.toLowerCase();
-          row.style.display = text.includes(keyword) ? "" : "none";
+        document.querySelectorAll("#eqTable tr").forEach(row => {
+          row.style.display = row.innerText.toLowerCase().includes(keyword) ? "" : "none";
         });
       }
 
-      // Search Borrowers
       function searchBorrowers(keyword) {
         keyword = keyword.toLowerCase();
-        let rows = document.querySelectorAll("#borrowTable tr");
-
-        rows.forEach((row) => {
-          let text = row.innerText.toLowerCase();
-          row.style.display = text.includes(keyword) ? "" : "none";
+        document.querySelectorAll("#borrowTable tr").forEach(row => {
+          row.style.display = row.innerText.toLowerCase().includes(keyword) ? "" : "none";
         });
       }
 
-      // Initial render
       render();
     </script>
   </body>
